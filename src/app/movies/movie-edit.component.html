@@ -1,0 +1,45 @@
+<div>
+     <form [formGroup]="movieForm" (ngSubmit)="submitMovie()" novalidate>
+          <div>
+               <label for="titleId">Title</label>
+               <input id="titleId" type="text" 
+                    formControlName="title"
+                    autofocus
+                    [ngClass]="{'is-invalid': true}"/>
+          </div>
+          <div>
+               <label>Year</label>
+               <input type="number" 
+                    formControlName="year"/>
+          </div>
+          <div>
+               <label>Duration</label>
+               <input type="text" 
+                    formControlName="duration" />
+          </div>
+          <!-- <div>
+               <label>Genres</label>
+               <input type="text" 
+                    formControlName="genres" />
+          </div> -->
+          <div>
+               <label>Watch Priority</label>
+               <input type="text" 
+                    formControlName="watchPriority" />
+          </div>
+          <div>
+               <label>Rating</label>
+               <input type="text" 
+                    formControlName="rating" />
+          </div>
+          <button type="submit"
+               [title]="movieForm.valid ? 'Save Movie' : 'Disabled'"
+               [disabled]="!movieForm.valid">Submit</button>
+     </form>
+
+     Dirty {{movieForm.dirty}} <br>
+     Touched {{movieForm.touched}} <br>
+     valid {{movieForm.valid}} <br>
+     Value {{movieForm.value | json}} <br>
+</div>
+        

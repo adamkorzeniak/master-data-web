@@ -1,0 +1,43 @@
+<h1>
+    Welcome to {{ pageTitle }}!
+    <p>
+        <button [routerLink]="['/movies/create']">Add Movie</button>
+    </p>
+</h1>
+<div class="card">
+    <div class="card-header">
+        <table *ngIf='movies && movies.length'>
+            <thead>
+                <tr>
+                    <th>Movie</th>
+                    <th>Year</th>
+                    <th>Duration</th>
+                    <th>Genres</th>
+                    <th>Cost</th>
+                    <th>To watch</th>
+                    <th>Rating</th>
+                    <th>Search</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let movie of movies'>
+                    <td>
+                        <a [routerLink]="['/movies', movie.id]">{{ movie.title }}</a></td>
+                    <td>{{ movie.year }}</td>
+                    <td>{{ movie.duration | minutesToHours }}</td>
+                    <td>{{ movie.genres | genre }}</td>
+                    <td>{{ movie.id + 0.9 | currency:'PLN' }}</td>
+                    <td>{{ movie.watchPriority }}</td>
+                    <td><md-star [rating]='movie.watchPriority' (ratingClicked)='onRatingClicked($event)'></md-star></td>
+                    <td><a href='https://www.google.com/search?q={{movie.title}}+({{movie.year}})'
+                         target="_blank">Search</a></td>
+                    <td>
+                        <button (click)='updateMovie()'>Update</button>
+                        <button (click)='deleteMovie(movie.id)'>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
