@@ -1,12 +1,15 @@
-<div *ngIf='movie'>
-  {{pageTitle + ': ' + movie.id}}
-
-  <br>Title: {{ movie.title }}
-  <br>Year: {{ movie.year }}
-  <br>Duration: {{ movie.duration | minutesToHours }}
-  <br>Genres: {{ movie.genres | genre }}
-  <br><a href='https://www.google.com/search?q={{movie.title}}+({{movie.year}})'
-       target="_blank">Search</a>
-  <br><button (click)='onBack()'>Update</button>
-  <br><button>Delete</button>
+<div class="container">
+  <div class="row">
+      <div *ngIf='movie'>
+      {{pageTitle + ': ' + movie.id}}
+      <br>Title: {{ movie.title }}
+      <br>Year: {{ movie.year }}
+      <br>Duration: {{ movie.duration | minutesToHours }}
+      <br>Genres: {{ movie.genres | genre }}
+      <br><a href='https://www.google.com/search?q={{movie.title}}+({{movie.year}})'
+          target="_blank">Search</a>
+      <br><button class="button btn-primary" (click)='onBack()'>Update</button>
+      <br><button class="button btn-primary">Delete</button>
+    </div>
+  </div>
 </div>

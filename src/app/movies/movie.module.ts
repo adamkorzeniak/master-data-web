@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { MovieListComponent } from './movie-list.component';
 import { MovieDetailComponent } from './movie-detail.component';
 import { ConvertMovieGenrePipe } from './movie-genre.pipe';
+import { WatchPriorityPipe } from './movie-watch-priority.pipe';
 import { GenresListComponent } from '../genres/genres-list.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MovieDetailComponent,
     GenresListComponent,
     ConvertMovieGenrePipe,
+    WatchPriorityPipe,
     MovieEditComponent
   ],
   imports: [
