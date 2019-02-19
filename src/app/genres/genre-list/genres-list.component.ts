@@ -9,13 +9,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class GenresListComponent implements OnInit {
   genres: IGenre[];
-  editedGenreId: number = -1;
-  creating: boolean = false;
+  editedGenreId = -1;
+  creating = false;
   genreSubmitForm: FormGroup;
   errorMessage: string;
 
   constructor(private genreService: GenreService,
-    private fb: FormBuilder){}
+    private fb: FormBuilder) {}
 
   ngOnInit() {
     this.genreService.getGenres().subscribe(
@@ -27,7 +27,7 @@ export class GenresListComponent implements OnInit {
         index: null,
         id: null,
         name: null
-      })
+      });
   }
 
   create() {
@@ -45,12 +45,12 @@ export class GenresListComponent implements OnInit {
         id: genre.id,
         name: genre.name
       }
-    )
+    );
   }
 
   updateGenre() {
-    let formValues = this.genreSubmitForm.value;
-    let genre: IGenre = this.genres[formValues.index];
+    const formValues = this.genreSubmitForm.value;
+    const genre: IGenre = this.genres[formValues.index];
     this.genres[formValues.index].name = formValues.name;
     this.editedGenreId = -1;
     const body = {...genre, ...formValues};
@@ -76,11 +76,11 @@ export class GenresListComponent implements OnInit {
   }
 
   deleteGenre(index: number, genre: IGenre) {
-    if (confirm("Delete genre: " + genre.name + " ?")) {
+    if (confirm('Delete genre: ' + genre.name + ' ?')) {
         this.genreService.deleteGenre(genre.id).subscribe(
             () => this.genres.splice(index, 1),
             error => console.log(error)
-        )
+        );
     }
   }
 

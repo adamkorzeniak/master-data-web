@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
-import { LoginComponent } from './auth/login.component';
+import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'login', 
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: '', 
+    path: '',
     component: MovieListComponent,
     canActivate: [ AuthGuard ]
   },
@@ -20,5 +20,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
 }

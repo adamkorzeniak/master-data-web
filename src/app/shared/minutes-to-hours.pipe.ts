@@ -1,19 +1,19 @@
-import { Pipe } from '@angular/core'
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name:'minutesToHours'
+    name: 'minutesToHours'
 })
 
-export class MinutesToHoursPipe {
+export class MinutesToHoursPipe implements PipeTransform {
 
     transform(value: number): string {
         let result = '';
         result += Math.floor(value / 60) + 'h ';
-        let minutes = value % 60;
+        const minutes = value % 60;
         if (minutes < 10) {
             result += '0';
         }
-        result += minutes + "min";
+        result += minutes + 'min';
         return result;
     }
 }

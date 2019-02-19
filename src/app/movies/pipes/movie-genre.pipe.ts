@@ -1,15 +1,15 @@
-import { Pipe } from '@angular/core'
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name:'genre'
+    name: 'genre'
 })
 
-export class ConvertMovieGenrePipe {
+export class ConvertMovieGenrePipe implements PipeTransform {
 
     transform(array: any[]) {
         let result = '';
         if (!array) {
-            return ""
+            return '';
         }
         array.forEach(element => {
             result += element.name;

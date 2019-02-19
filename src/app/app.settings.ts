@@ -1,3 +1,3 @@
 export class AppSettings {
-    public static HOST: string = 'http://localhost:8080';
+    public static HOST = 'http://localhost:8080';
 }

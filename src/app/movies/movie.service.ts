@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core'
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { IMovie } from './movie';
@@ -12,9 +12,9 @@ export class MovieService {
     private movieUrl: string = AppSettings.HOST + '/Movie/v0/movies';
 
     constructor(private http: HttpClient) {}
-    
+
     getMovies(): Observable<IMovie[]> {
-        return this.searchMovies("");
+        return this.searchMovies('');
     }
 
     searchMovies(queryParamString: string): Observable<IMovie[]> {
@@ -61,7 +61,7 @@ export class MovieService {
             errorMessage = 'Server returned '  + err.status;
         }
         console.log(errorMessage);
-        return throwError(errorMessage)
+        return throwError(errorMessage);
     }
 
 }

@@ -38,5 +38,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MovieRoutingModule { 
+export class MovieRoutingModule {
 }

@@ -7,6 +7,7 @@ import { AuthenticationService } from './auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
+
     constructor(private authenticationService: AuthenticationService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -16,9 +17,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.authenticationService.logout();
                 location.reload(true);
             }
-            
+
             const error = err.error.message || err.statusText;
             return throwError(error);
-        }))
+        }));
     }
 }

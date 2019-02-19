@@ -7,7 +7,7 @@ import { AuthenticationService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  appName: string = 'Master Data';
+  appName = 'Master Data';
 
   constructor(private authService: AuthenticationService) {}
 

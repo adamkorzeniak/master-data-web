@@ -9,7 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MovieRoutingModule } from './movie-routing.module';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from '../auth/login.component';
+import { LoginComponent } from '../login/login.component';
 
 @NgModule({
   declarations: [

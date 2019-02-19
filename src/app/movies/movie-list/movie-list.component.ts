@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { IMovie } from '../movie';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -9,13 +9,13 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 
 export class MovieListComponent implements OnInit {
-    pageTitle: string = "Movie List";
+    pageTitle = 'Movie List';
     movies: IMovie[];
     movieSearchForm: FormGroup;
-    isSearchVisible: boolean = false;
+    isSearchVisible = false;
     errorMessage: string;
-    movieSorting: string[] = ['', 'title', 'year', 'duration', "rating", "watchPriority"];
-    sortingOrder: string[] = ['', 'asc', 'desc']
+    movieSorting: string[] = ['', 'title', 'year', 'duration', 'rating', 'watchPriority'];
+    sortingOrder: string[] = ['', 'asc', 'desc'];
 
     ngOnInit(): void {
         this.movieService.getMovies().subscribe(
@@ -37,7 +37,7 @@ export class MovieListComponent implements OnInit {
             description: null,
             order: null,
             sortingOrder: null
-          })
+          });
     }
 
     constructor(private movieService: MovieService,
@@ -45,11 +45,11 @@ export class MovieListComponent implements OnInit {
     }
 
     deleteMovie(index: number, movie: IMovie) {
-        if (confirm("Delete movie: " + movie.title + " (" + movie.year + ") ?")) {
+        if (confirm('Delete movie: ' + movie.title + ' (' + movie.year + ') ?')) {
             this.movieService.deleteMovie(movie.id).subscribe(
                 () => this.movies.splice(index, 1),
                 error => console.log(error)
-            )
+            );
         }
     }
 
@@ -57,57 +57,57 @@ export class MovieListComponent implements OnInit {
         console.log(JSON.stringify(this.movieSearchForm.value));
         const params = this.movieSearchForm.value;
         let isStarted = false;
-        let queryParamString: string = "";
+        let queryParamString = '';
         if (params.title) {
-            queryParamString += ((isStarted) ? "&" : "?") + "search-title=" + params.title;
+            queryParamString += ((isStarted) ? '&' : '?') + 'search-title=' + params.title;
             isStarted = true;
         }
         if (params.minYear != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "min-year=" + params.minYear;
+            queryParamString += ((isStarted) ? '&' : '?') + 'min-year=' + params.minYear;
             isStarted = true;
         }
         if (params.maxYear != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "max-year=" + params.maxYear;
+            queryParamString += ((isStarted) ? '&' : '?') + 'max-year=' + params.maxYear;
             isStarted = true;
         }
         if (params.minDuration != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "min-duration=" + params.minDuration;
+            queryParamString += ((isStarted) ? '&' : '?') + 'min-duration=' + params.minDuration;
             isStarted = true;
         }
         if (params.maxDuration != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "max-duration=" + params.maxDuration;
+            queryParamString += ((isStarted) ? '&' : '?') + 'max-duration=' + params.maxDuration;
             isStarted = true;
         }
         if (params.genres) {
-            queryParamString += ((isStarted) ? "&" : "?") + "genres=" + params.genres;
+            queryParamString += ((isStarted) ? '&' : '?') + 'genres=' + params.genres;
             isStarted = true;
         }
         if (params.minWatchPriority != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "min-watchPriority=" + params.minWatchPriority;
+            queryParamString += ((isStarted) ? '&' : '?') + 'min-watchPriority=' + params.minWatchPriority;
             isStarted = true;
         }
         if (params.maxWatchPriority != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "max-watchPriority=" + params.maxWatchPriority;
+            queryParamString += ((isStarted) ? '&' : '?') + 'max-watchPriority=' + params.maxWatchPriority;
             isStarted = true;
         }
         if (params.minRating != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "min-rating=" + params.minRating;
+            queryParamString += ((isStarted) ? '&' : '?') + 'min-rating=' + params.minRating;
             isStarted = true;
         }
         if (params.maxRating != null) {
-            queryParamString += ((isStarted) ? "&" : "?") + "max-rating=" + params.maxRating;
+            queryParamString += ((isStarted) ? '&' : '?') + 'max-rating=' + params.maxRating;
             isStarted = true;
         }
         if (params.description) {
-            queryParamString += ((isStarted) ? "&" : "?") + "search-description=" + params.description;
+            queryParamString += ((isStarted) ? '&' : '?') + 'search-description=' + params.description;
             isStarted = true;
         }
         if (params.order) {
-            queryParamString += ((isStarted) ? "&" : "?") + "order";
+            queryParamString += ((isStarted) ? '&' : '?') + 'order';
             if (params.sortingOrder) {
-                queryParamString += "-" + params.sortingOrder;
+                queryParamString += '-' + params.sortingOrder;
             }
-            queryParamString += "=" + params.order;
+            queryParamString += '=' + params.order;
             isStarted = true;
         }
         console.log(queryParamString);

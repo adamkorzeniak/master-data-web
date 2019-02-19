@@ -6,6 +6,7 @@ import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
     private authUrl: string = AppSettings.HOST + '/v0/me';
 
     constructor(private http: HttpClient) { }

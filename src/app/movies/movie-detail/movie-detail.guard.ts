@@ -12,9 +12,9 @@ export class MovieDetailGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      let id = +next.url[1].path;
+      const id = +next.url[1].path;
       if (isNaN(id) || id < 1) {
-        alert("Invalid movie Id");
+        alert('Invalid movie Id');
         this.router.navigate(['movies']);
         return false;
       }

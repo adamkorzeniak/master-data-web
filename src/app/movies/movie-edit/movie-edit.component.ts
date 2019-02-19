@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IMovie } from '../movie';
 import { MovieService } from '../movie.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormBuilder  } from '@angular/forms'
+import { FormGroup, Validators, FormBuilder  } from '@angular/forms';
 
 @Component({
   templateUrl: './movie-edit.component.html',
@@ -19,7 +19,7 @@ export class MovieEditComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
 
     this.movieForm = this.fb.group({
       title: [null, Validators.required],
@@ -32,7 +32,7 @@ export class MovieEditComponent implements OnInit {
       review: null,
       plotSummary: null,
       reviewDate: null
-    })
+    });
 
     if (id > 0) {
       this.movieService.getMovie(id).subscribe(
@@ -43,7 +43,7 @@ export class MovieEditComponent implements OnInit {
   }
 
   displayMovie(movie: IMovie): void {
-    if(this.movieForm) {
+    if (this.movieForm) {
       this.movieForm.reset();
     }
     this.movie = movie;
@@ -58,7 +58,7 @@ export class MovieEditComponent implements OnInit {
       review: this.movie.review,
       plotSummary: this.movie.plotSummary,
       reviewDate: this.movie.reviewDate
-    })
+    });
   }
 
   submitMovie(): void {

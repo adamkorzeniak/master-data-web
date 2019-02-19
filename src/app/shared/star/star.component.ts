@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core'
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
     selector: 'md-star',
@@ -13,7 +13,7 @@ export class StarComponent implements OnInit {
     stars: boolean[] = [];
 
     ngOnInit(): void {
-        
+
         for (let i = 0; i < this.maxRating; i++) {
             this.stars[i] = (this.rating > i);
         }
