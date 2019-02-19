@@ -1,0 +1,38 @@
+<div class="container" *ngIf="movie">
+  <div class="row">
+    <div class="col-10">{{ movie.title }} ({{ movie.year }}) 
+      <a class="offset-1" href='https://www.google.com/search?q={{movie.title}}+({{movie.year}})'
+      target="_blank">Search</a>
+    </div>
+    <div class="col-10">
+        {{ movie.duration | minutesToHours }}
+    </div>
+    <div class="col-10">
+        {{ movie.genres | genre }}
+    </div>
+    <div class="col-10">
+        {{ movie.description }}
+    </div>
+  </div>
+
+<div class="row" style="margin-top: 10px;">
+  <div class="col-12">
+      {{ movie.watchPriority | watchPriority }}
+  </div>
+  <md-star class="col-12" [rating]='movie.rating' [maxRating]=10></md-star>
+  <div class="col-12">
+      {{ movie.review }}
+  </div>
+  <div class="col-12">
+      {{ movie.plotSummary }}
+  </div>
+  <div class="col-12">
+      Reviewed: {{ movie.reviewDate }}
+  </div>
+</div>
+<div class="row" style="margin-top: 10px;">
+  <button class="col-4 offset-1 button btn-primary card-link" 
+      [routerLink]="['edit']">Update</button>
+  <button class="col-4 offset-1 button btn-primary card-link"
+      (click)='deleteMovie(movie)'>Delete</button>
+</div>

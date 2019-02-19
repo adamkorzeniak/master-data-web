@@ -1,0 +1,5 @@
+<div>
+  <div *ngFor="let isChecked of stars" 
+  class="fa fa-star checked"
+  [ngClass]="{'checked': isChecked}"></div> ({{ rating }})
+</div>

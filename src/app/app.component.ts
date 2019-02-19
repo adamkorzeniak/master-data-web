@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './auth/auth.service';
 
 @Component({
   selector: 'md-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   appName: string = 'Master Data';
+
+  constructor(private authService: AuthenticationService) {}
+
+  logout() {
+    this.authService.logout();
+    location.reload(true);
+  }
 }

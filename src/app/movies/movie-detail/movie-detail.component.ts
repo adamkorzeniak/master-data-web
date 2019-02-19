@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from './movie.service';
+import { MovieService } from '../movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IMovie } from './movie';
+import { IMovie } from '../movie';
 
 @Component({
   templateUrl: './movie-detail.component.html',
@@ -22,10 +22,15 @@ export class MovieDetailComponent implements OnInit {
     this.movieService.getMovie(id).subscribe(
       movie => this.movie = movie,
       error => this.errorMessage = <any>error
-  );
+    );
   }
 
-  onBack(): void {
-    this.router.navigate(['movies']);
-  }
+  deleteMovie(movie: IMovie) {
+    if (confirm("Delete movie: " + movie.title + " (" + movie.year + ") ?")) {
+        this.movieService.deleteMovie(movie.id).subscribe(
+            () => console.log("Success"),
+            error => console.log(error)
+        )
+    }
+}
 }

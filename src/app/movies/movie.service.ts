@@ -3,18 +3,23 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { IMovie } from './movie';
+import { AppSettings } from '../app.settings';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MovieService {
-    private movieUrl: string = 'http://localhost:8080/Movie/api/v0/movies';
+    private movieUrl: string = AppSettings.HOST + '/Movie/v0/movies';
 
     constructor(private http: HttpClient) {}
     
     getMovies(): Observable<IMovie[]> {
-        return this.http.get<IMovie[]>(this.movieUrl).pipe(
-            tap(data => console.log('All: ' + JSON.stringify(data))),
+        return this.searchMovies("");
+    }
+
+    searchMovies(queryParamString: string): Observable<IMovie[]> {
+        return this.http.get<IMovie[]>(this.movieUrl + queryParamString).pipe(
+            tap(data => console.log('Searched: ' + JSON.stringify(data))),
             catchError(this.handleError)
         );
     }

@@ -8,6 +8,9 @@ export class ConvertMovieGenrePipe {
 
     transform(array: any[]) {
         let result = '';
+        if (!array) {
+            return ""
+        }
         array.forEach(element => {
             result += element.name;
             result += ', ';

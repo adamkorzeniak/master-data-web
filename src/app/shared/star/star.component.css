@@ -4,3 +4,6 @@
 div {
   cursor: pointer;
 }
+.checked {
+  color: orange
+}
