@@ -1,36 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IMovie } from '../movie';
 
+import { IMovie } from '../model/movie';
+import { MovieService } from '../service/movie-repository.service';
+
+// Display details of movie, allows to delete movie details
 @Component({
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit {
-  pageTitle = 'Movie Details';
-  movie: IMovie;
-  errorMessage: string;
+  private movie: IMovie;
 
   constructor(
     private movieService: MovieService,
     private router: Router,
     private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.movieService.getMovie(id).subscribe(
-      movie => this.movie = movie,
-      error => this.errorMessage = <any>error
-    );
+    this.retrieveMovie(id);
   }
 
-  deleteMovie(movie: IMovie) {
+  public deleteMovie(movie: IMovie) {
     if (confirm('Delete movie: ' + movie.title + ' (' + movie.year + ') ?')) {
-        this.movieService.deleteMovie(movie.id).subscribe(
-            () => console.log('Success'),
-            error => console.log(error)
-        );
+      this.movieService.deleteMovie(movie.id).subscribe(
+        () => console.log('Success'),
+        error => console.log(error)
+      );
     }
-}
+  }
+
+  private retrieveMovie(id: number): void {
+    this.movieService.getMovie(id).subscribe(
+      movie => this.movie = movie,
+      null
+    );
+  }
 }

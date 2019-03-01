@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
-import { ConvertMovieGenrePipe } from './pipes/movie-genre.pipe';
-import { WatchPriorityPipe } from './pipes/movie-watch-priority.pipe';
-import { GenresListComponent } from '../genres/genre-list/genres-list.component';
-import { RouterModule } from '@angular/router';
+import { GenresListComponent } from '../movies/genre-list/genres-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { MovieRoutingModule } from './movie-routing.module';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from '../login/login.component';
+import { ConvertMovieGenrePipe } from './pipe/movie-genre.pipe';
+import { WatchPriorityPipe } from './pipe/movie-watch-priority.pipe';
 
 @NgModule({
   declarations: [
     MovieListComponent,
-    LoginComponent,
     MovieDetailComponent,
     GenresListComponent,
     ConvertMovieGenrePipe,

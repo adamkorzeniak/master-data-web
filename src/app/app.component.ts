@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
-import { AuthenticationService } from './auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './auth/service/auth.service';
 
 @Component({
   selector: 'md-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  appName = 'Master Data';
 
   constructor(private authService: AuthenticationService) {}
 
-  logout() {
+  public logout() {
     this.authService.logout();
     location.reload(true);
   }

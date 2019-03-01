@@ -2,21 +2,20 @@ import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
     selector: 'md-star',
-    templateUrl: './star.component.html',
-    styleUrls: ['./star.component.css']
+    styleUrls: ['./star.component.css'],
+    templateUrl: './star.component.html'
 })
 
 export class StarComponent implements OnInit {
-    @Input() rating: number;
-    @Input() maxRating: number;
+  @Input() private rating: number;
+  @Input() private maxRating: number;
 
-    stars: boolean[] = [];
+  private stars: boolean[] = [];
 
-    ngOnInit(): void {
-
-        for (let i = 0; i < this.maxRating; i++) {
-            this.stars[i] = (this.rating > i);
-        }
+  public ngOnInit(): void {
+    for (let i = 0; i < this.maxRating; i++) {
+        this.stars[i] = (this.rating > i);
     }
+  }
 
 }

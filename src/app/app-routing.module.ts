@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
-import { MovieListComponent } from './movies/movie-list/movie-list.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth/auth.guard';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
     path: '',
-    component: MovieListComponent,
-    canActivate: [ AuthGuard ]
-  },
+    redirectTo: '/movies',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

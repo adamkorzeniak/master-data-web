@@ -1,3 +1,3 @@
 export class AppSettings {
-    public static HOST = 'http://localhost:8080';
+    public static HOST = 'https://adam-dev.pl:8443';
 }

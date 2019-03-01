@@ -1,54 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { GenreService } from '../genre.service';
-import { IGenre } from '../genre';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { IGenre } from '../model/genre';
+import { GenreService } from '../service/genre-repository.service';
+
+// Component used to
+//  Display list of genres
+//  Modify genre
+//  Create genre
+//  Remove genre
 @Component({
   templateUrl: './genres-list.component.html',
   styleUrls: ['./genres-list.component.css']
 })
 export class GenresListComponent implements OnInit {
-  genres: IGenre[];
-  editedGenreId = -1;
-  creating = false;
-  genreSubmitForm: FormGroup;
-  errorMessage: string;
+  private genres: IGenre[];
+  private editedGenreId = -1;
+  private creating = false;
+  private genreSubmitForm: FormGroup;
 
-  constructor(private genreService: GenreService,
+  constructor(
+    private genreService: GenreService,
     private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.genreService.getGenres().subscribe(
-      genres => this.genres = genres,
-      error => this.errorMessage = <any>error
-      );
-
-      this.genreSubmitForm = this.fb.group({
-        index: null,
-        id: null,
-        name: null
-      });
+  public ngOnInit() {
+    this.retrieveGenres();
+    this.buildGenreSubmitForm();
   }
 
-  create() {
+  public addGenreElement() {
     this.editedGenreId = -1;
     this.creating = true;
     this.genreSubmitForm.reset();
   }
 
-  update(index: number, genre: IGenre) {
+  public updateGenreElement(i: number, genre: IGenre) {
     this.editedGenreId = genre.id;
     this.creating = false;
     this.genreSubmitForm.setValue(
       {
-        index: index,
+        index: i,
         id: genre.id,
         name: genre.name
       }
     );
   }
 
-  updateGenre() {
+  public updateGenre() {
     const formValues = this.genreSubmitForm.value;
     const genre: IGenre = this.genres[formValues.index];
     this.genres[formValues.index].name = formValues.name;
@@ -63,8 +61,7 @@ export class GenresListComponent implements OnInit {
     );
   }
 
-  createGenre() {
-
+  public createGenre() {
     const body = this.genreSubmitForm.value;
     this.genreService.createGenre(body).subscribe(
       (genre) => {
@@ -75,7 +72,7 @@ export class GenresListComponent implements OnInit {
     );
   }
 
-  deleteGenre(index: number, genre: IGenre) {
+  public deleteGenre(index: number, genre: IGenre) {
     if (confirm('Delete genre: ' + genre.name + ' ?')) {
         this.genreService.deleteGenre(genre.id).subscribe(
             () => this.genres.splice(index, 1),
@@ -84,4 +81,18 @@ export class GenresListComponent implements OnInit {
     }
   }
 
+  private retrieveGenres(): void {
+    this.genreService.getGenres().subscribe(
+      genres => this.genres = genres,
+      null
+    );
+  }
+
+  private buildGenreSubmitForm(): void {
+    this.genreSubmitForm = this.fb.group({
+      index: null,
+      id: null,
+      name: null
+    });
+  }
 }

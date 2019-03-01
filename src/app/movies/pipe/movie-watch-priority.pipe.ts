@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class WatchPriorityPipe implements PipeTransform {
 
-    transform(value: number): string {
+    public transform(value: number): string {
         if (value === 1) { return 'Do sprawdzenia (1)'; }
         if (value === 2) { return 'Kiedyś obejrzę (2)'; }
         if (value === 3) { return 'Chętnie obejrzę (3)'; }

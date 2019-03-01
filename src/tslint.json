@@ -1,17 +1,46 @@
 {
-    "extends": "../tslint.json",
+    "extends": [
+      "../tslint.json",
+      "tslint:recommended",
+      "tslint-sonarts"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "./polyfills.ts"
+        ]
+    },
     "rules": {
         "directive-selector": [
             true,
             "attribute",
-            "app",
+            "md",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "app",
+            "md",
             "kebab-case"
-        ]
-    }
+        ],
+        "arrow-parens": false,
+        "object-literal-sort-keys": true,
+        "ordered-imports": false,
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
+        "trailing-comma": [
+            true,
+            {
+              "multiline": "never",
+              "singleline": "never"
+            }
+        ],
+        "no-string-literal": false
+// Temporary
+        ,
+        "no-console": false
+    },
+    "jsRules": { "object-literal-sort-keys": false }
 }

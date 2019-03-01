@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class ConvertMovieGenrePipe implements PipeTransform {
 
-    transform(array: any[]) {
+    public transform(array: any[]) {
         let result = '';
         if (!array) {
             return '';

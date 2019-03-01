@@ -1,3 +1,5 @@
+import { IGenre } from './genre';
+
 export interface IMovie {
     id: number;
     title: string;
@@ -9,5 +11,5 @@ export interface IMovie {
     review: string;
     plotSummary: string;
     reviewDate: string;
-    genres: any[];
+    genres: IGenre[];
 }
