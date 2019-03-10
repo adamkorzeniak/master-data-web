@@ -10,25 +10,24 @@ import { AuthenticationService } from '../service/auth.service';
 @Component({templateUrl: './login.component.html'})
 export class LoginComponent implements OnInit {
 
-  private loginForm: FormGroup;
+  protected loginForm: FormGroup;
   private returnUrl: string;
 
   constructor(
-      private formBuilder: FormBuilder,
-      private router: Router,
-      private route: ActivatedRoute,
-      private authService: AuthenticationService) {}
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthenticationService) {}
 
   public ngOnInit() {
     this.saveReturnUrl();
     this.buildLoginForm();
   }
 
-  public onSubmit() {
-    const user = this.loginForm.value;
+  protected onLoginSubmit(): void {
+    const user: IUser = this.loginForm.value;
     this.authService.login(user).subscribe(
-        () => this.acceptUser(user),
-        () => null
+      () => this.acceptUser(user)
     );
   }
 
@@ -36,14 +35,14 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
   }
 
-  private buildLoginForm() {
+  private buildLoginForm(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  private acceptUser(user: IUser) {
+  private acceptUser(user: IUser): void {
     this.authService.saveUser(user);
     this.router.navigate([this.returnUrl]);
   }

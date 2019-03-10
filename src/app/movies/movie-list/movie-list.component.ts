@@ -1,36 +1,75 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { IMovie } from '../model/movie';
 import { MovieService } from '../service/movie-repository.service';
 
+// Display all movies and allows to search for movies
 @Component({
     templateUrl: './movie-list.component.html',
     styleUrls: ['./movie-list.component.css']
 })
 
 export class MovieListComponent implements OnInit {
-  private pageTitle = 'Movie List';
-  private movies: IMovie[];
-  private movieSearchForm: FormGroup;
-  private isSearchVisible = false;
-  private errorMessage: string;
-  private movieSorting: string[] = ['', 'title', 'year', 'duration', 'rating', 'watchPriority'];
-  private sort: string[] = ['', 'asc', 'desc'];
-  private urlParams: any;
+  protected movies: IMovie[];
+  protected movieSearchForm: FormGroup;
+  protected isSearchVisible = false;
+  protected movieSorting: string[] = ['', 'title', 'year', 'duration', 'rating', 'watchPriority'];
+  protected sort: string[] = ['', 'asc', 'desc'];
+  protected urlParams: any;
   private queryParams: any;
 
   constructor(
     private movieService: MovieService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) {
-  }
+    private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
     this.urlParams = this.retrieveQueryParams();
+    this.buildMovieSearchForm();
+    this.initiateSearch();
+  }
 
+  protected resetForm() {
+    this.movieSearchForm.reset();
+  }
+
+  protected initiateSearch(): void {
+    this.resetParams();
+    this.buildParams();
+    this.searchMovie();
+    this.updateUrl();
+  }
+
+  protected deleteMovie(index: number, movie: IMovie) {
+    const message = 'Delete movie: ' + movie.title + ' (' + movie.year + ') ?';
+    if (confirm(message)) {
+      this.movieService.deleteMovie(movie.id).subscribe(
+        () => this.movies.splice(index, 1)
+      );
+    }
+  }
+
+  private searchMovie() {
+    this.movieService.queryMovies(this.queryParams).subscribe(
+      movies => this.movies = movies
+    );
+  }
+
+  private retrieveQueryParams() {
+    const params = this.route.snapshot.queryParamMap;
+    const result = {};
+    const keys = params.keys;
+    const paramSize = keys.length;
+    for (let i = 0; i < paramSize; i++) {
+      result[keys[i]] = params.get(keys[i]);
+    }
+    return result;
+  }
+
+  private buildMovieSearchForm(): void {
     this.movieSearchForm = this.fb.group({
       title: this.urlParams.title,
       minYear: this.urlParams.minYear,
@@ -46,41 +85,15 @@ export class MovieListComponent implements OnInit {
       order: this.urlParams.description,
       sort: this.urlParams.sort
     });
-
-    this.searchMovie();
   }
 
-  public retrieveQueryParams() {
-    const params = this.route.snapshot.queryParamMap;
-    const result = {};
-    const keys = params.keys;
-    const paramSize = keys.length;
-    for (let i = 0; i < paramSize; i++) {
-      result[keys[i]] = params.get(keys[i]);
-    }
-    return result;
-  }
-
-  public resetForm() {
-    this.movieSearchForm.reset();
-  }
-
-  public deleteMovie(index: number, movie: IMovie) {
-      if (confirm('Delete movie: ' + movie.title + ' (' + movie.year + ') ?')) {
-          this.movieService.deleteMovie(movie.id).subscribe(
-              () => this.movies.splice(index, 1),
-              error => console.log(error)
-          );
-      }
-  }
-
-  public resetParams() {
+  private resetParams() {
     this.urlParams = {};
     this.queryParams = {};
     this.updateUrl();
   }
 
-  public buildParams() {
+  private buildParams() {
     const params = this.movieSearchForm.value;
     if (params.title) {
       this.urlParams['title'] = params.title;
@@ -137,30 +150,13 @@ export class MovieListComponent implements OnInit {
     }
   }
 
-  public updateUrl() {
+  private updateUrl() {
     this.router.navigate(
       [],
       {
         relativeTo: this.route,
         queryParams: this.urlParams
-      });
-
-    console.log(this.queryParams);
-    console.log(this.urlParams);
-  }
-
-  public searchMovie() {
-    this.movieService.queryMovies(this.queryParams).subscribe(
-      movies => this.movies = movies,
-      error => this.errorMessage = error
+      }
     );
-  }
-
-  public initiateSearch(): void {
-    console.log(JSON.stringify(this.movieSearchForm.value));
-    this.resetParams();
-    this.buildParams();
-    this.searchMovie();
-    this.updateUrl();
   }
 }

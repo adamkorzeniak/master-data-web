@@ -1,0 +1,11 @@
+.md-genre-list {
+  position: absolute;
+  background-color: white;
+  z-index: 1000;
+  overflow-x: visible;
+}
+
+.md-genre-list div {
+  width: 100%;
+  border: 1px gray solid;
+}

@@ -1,0 +1,12 @@
+.md-bg-blue {
+  background-color: #0069d9 !important
+}
+
+.md-txt-white {
+  color: rgba(255,255,255,.75);
+}
+
+.md-txt-white:hover {
+  background-color: #0069d9 !important;
+  color: rgba(255,255,255,1);
+}

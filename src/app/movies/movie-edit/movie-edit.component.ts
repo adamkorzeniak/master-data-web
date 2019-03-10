@@ -5,6 +5,7 @@ import { FormGroup, Validators, FormBuilder, FormArray, FormControl  } from '@an
 import { IMovie } from '../model/movie';
 import { MovieService } from '../service/movie-repository.service';
 import { GenreService } from '../service/genre-repository.service';
+import { IGenre } from '../model/genre';
 
 // Allows to modify movie details
 @Component({
@@ -12,12 +13,12 @@ import { GenreService } from '../service/genre-repository.service';
   styleUrls: ['./movie-edit.component.css']
 })
 export class MovieEditComponent implements OnInit {
-  private movie: IMovie;
-  private movieForm: FormGroup;
-  private matchingGenres: any[];
-  private allowedGenres: any[];
-  private listDisplayed = false;
-  private searchedGenre: string;
+  protected movieForm: FormGroup;
+  protected movie: IMovie;
+  protected allGenres: IGenre[];
+  protected matchingGenres: IGenre[];
+  protected listDisplayed: boolean;
+  protected searchedGenre: string;
 
   constructor(
     private movieService: MovieService,
@@ -38,98 +39,52 @@ export class MovieEditComponent implements OnInit {
   }
 
   public chooseGenre(index: number) {
-    this.genres.removeAt(index);
-    const genre = this.matchingGenres[index];
-    this.genres.push(this.fb.group({
-      id: { value: genre.id, disabled: true },
-      name: { value: genre.name, disabled: true }
-    }));
-
-    this.genres.push(this.fb.group({
-      id: null,
-      name: null
-      }));
-    }
+    this.genres.controls.splice(-1, 1);
+    this.pushGenre(index);
+    this.clearGenreDropdown();
+  }
 
   public addNewGenre() {
-    const index = this.genres.controls.length - 1;
-    this.genres.removeAt(index);
-    this.genres.push(this.fb.group({
-      id: { value: null, disabled: true },
-      name: { value: this.searchedGenre, disabled: true }
-    }));
-    this.genres.push(this.fb.group({
-      id: null,
-      name: null
-    }));
+    this.genres.controls.splice(-1, 1);
+    this.createGenre(this.searchedGenre);
+    this.clearGenreDropdown();
   }
 
   public updateList(event: any) {
     this.listDisplayed = true;
     const genresList = this.genres.controls;
     this.searchedGenre = genresList[genresList.length - 1].value.name;
-    console.log(this.searchedGenre);
     this.matchingGenres = [];
 
-    for (const genre of this.allowedGenres) {
+    for (const genre of this.allGenres) {
       if (genre.name.toUpperCase().includes(this.searchedGenre.toUpperCase())) {
         this.matchingGenres.push(genre);
       }
     }
-    console.log(this.matchingGenres);
   }
 
   public removeGenre(index: number) {
-    this.genres.removeAt(index);
-  }
-
-  public displayMovie(movie: IMovie): void {
-    if (this.movieForm) {
-      this.movieForm.reset();
-    }
-    this.movie = movie;
-
-    for (const genre of movie.genres) {
-      this.genres.push(this.fb.group({
-        id: { value: genre.id, disabled: true },
-        name: { value: genre.name, disabled: true }
-      }));
-    }
-
-    this.genres.push(this.fb.group({
-      id: null,
-      name: null
-    }));
-
-    this.movieForm.patchValue({
-      title: this.movie.title,
-      year: this.movie.year,
-      duration: this.movie.duration,
-      description: this.movie.description,
-      genres: this.movie.genres,
-      watchPriority: this.movie.watchPriority,
-      rating: this.movie.rating,
-      review: this.movie.review,
-      plotSummary: this.movie.plotSummary,
-      reviewDate: this.movie.reviewDate
-    });
+    this.genres.controls.splice(index, 1);
   }
 
   public submitMovie(): void {
-    console.log(JSON.stringify(this.movieForm.value));
     const body = {...this.movie, ...this.movieForm.value};
-    console.log(JSON.stringify(body));
+    const genres: IGenre[] = [];
+
+    this.genres.controls.splice(-1, 1);
+    for (const c of this.genres.controls) {
+      const genre: IGenre = c.value as IGenre;
+      genres.push(genre);
+    }
+    body.genres = genres;
     if (this.movie && this.movie.id) {
       this.movieService.updateMovie(this.movie.id, body).subscribe(
-        () => this.router.navigate(['/movies', this.movie.id ]),
-        error => console.log(error)
+        () => this.router.navigate(['/movies', this.movie.id ])
       );
     } else {
       this.movieService.createMovie(body).subscribe(
-        (movie) => this.router.navigate(['/movies', movie.id ]),
-        error => console.log(error)
+        (movie) => this.router.navigate(['/movies', movie.id ])
       );
-
     }
   }
 
@@ -150,16 +105,84 @@ export class MovieEditComponent implements OnInit {
 
   private retrieveMovie(id: number): void {
     this.movieService.getMovie(id).subscribe(
-      movie => this.displayMovie(movie),
-      error => console.log(error)
+      movie => this.displayMovie(movie)
     );
+  }
+
+  private displayMovie(movie: IMovie): void {
+    if (this.movieForm) {
+      this.movieForm.reset();
+    }
+    this.movie = movie;
+    this.initiateMovieDetails();
+    this.initiateGenresDetails();
+    this.pushEmptyGenre();
+  }
+
+  private initiateMovieDetails() {
+    this.movieForm.patchValue({
+      title: this.movie.title,
+      year: this.movie.year,
+      duration: this.movie.duration,
+      description: this.movie.description,
+      genres: this.movie.genres,
+      watchPriority: this.movie.watchPriority,
+      rating: this.movie.rating,
+      review: this.movie.review,
+      plotSummary: this.movie.plotSummary,
+      reviewDate: this.movie.reviewDate
+    });
+  }
+
+  private initiateGenresDetails() {
+    for (const genre of this.movie.genres) {
+      this.genres.push(this.fb.group({
+        id: { value: genre.id, disabled: true },
+        name: { value: genre.name, disabled: true }
+      }));
+    }
   }
 
   private retrieveGenres(): void {
     this.genreService.getGenres().subscribe(
-      genres => this.allowedGenres = this.matchingGenres = genres,
-      error => console.log(error)
+      genres => this.allGenres = genres
     );
   }
 
+  private pushEmptyGenre() {
+    this.genres.push(this.fb.group({
+      id: null,
+      name: null
+    }));
+  }
+
+  private clearGenreDropdown() {
+    this.listDisplayed = false;
+    this.searchedGenre = '';
+  }
+
+  private createGenre(name: string) {
+    const genre: IGenre = {
+      id: null,
+      name: name
+    };
+    this.genreService.createGenre(genre).subscribe(
+      (g) => {
+        this.genres.push(this.fb.group({
+          id: { value: g.id, disabled: true },
+          name: { value: g.name, disabled: true }
+        }));
+        this.pushEmptyGenre();
+      }
+    );
+  }
+
+  private pushGenre(i: number) {
+    const genre = this.matchingGenres[i];
+    this.genres.push(this.fb.group({
+      id: { value: genre.id, disabled: true },
+      name: { value: genre.name, disabled: true }
+    }));
+    this.pushEmptyGenre();
+  }
 }

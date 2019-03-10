@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +8,11 @@ import { MovieModule } from './movies/movie.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
-import { ErrorInterceptor } from './auth/interceptor/auth-error.interceptor';
 import { AuthInterceptor } from './auth/interceptor/auth.interceptor';
+import { ErrorModule } from './error/error.module';
+import { GlobalErrorHandler } from './error/handler/global-error-handler';
+import { CryptoModule } from './crypto/crypto.module';
+import { ErrorInterceptor } from './error/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,11 @@ import { AuthInterceptor } from './auth/interceptor/auth.interceptor';
   imports: [
     BrowserModule,
     HttpClientModule,
-    MovieModule,
-    AuthModule,
     AppRoutingModule,
+    MovieModule,
+    CryptoModule,
+    AuthModule,
+    ErrorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
@@ -33,6 +38,10 @@ import { AuthInterceptor } from './auth/interceptor/auth.interceptor';
         provide : HTTP_INTERCEPTORS,
         useClass: ErrorInterceptor,
         multi   : true
+      },
+      {
+        provide: ErrorHandler,
+        useClass: GlobalErrorHandler
       }
   ],
   bootstrap: [AppComponent]

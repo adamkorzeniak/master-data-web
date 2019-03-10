@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="container-fluid p-0">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark md-bg-blue">
       <a class="navbar-brand" [routerLink]="['/']">
         <i class="fas fa fa-database"></i>Master Data
       </a>
@@ -17,25 +17,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/movies']">Movies</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/genres']">Genres</a>
-        </li>
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+        <a class="nav-link dropdown-toggle" href="#" id="movieDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Movies
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-menu md-bg-blue" aria-labelledby="movieDropdown">
+          <a class="dropdown-item md-txt-white" [routerLink]="['/movies']">Movies</a>
+          <a class="dropdown-item md-txt-white" [routerLink]="['/genres']">Genres</a>
         </div>
-        </li>
         <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" [routerLink]="['/crypto']">Crypto</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -47,6 +38,5 @@
     </nav>
   </header>
 <router-outlet></router-outlet>
-<md-alert></md-alert>
 </body>
 </html>

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { GenresListComponent } from '../movies/genre-list/genres-list.component';
-import { MovieDetailGuard } from './guard/movie-detail.guard';
+import { MovieActivateGuard } from './guard/movie.guard';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
 import { AuthGuard } from '../auth/guard/auth.guard';
 
@@ -21,12 +21,12 @@ const routes: Routes = [
   {
     path: 'movies/:id',
     component: MovieDetailComponent,
-    canActivate: [ AuthGuard, MovieDetailGuard ]
+    canActivate: [ AuthGuard, MovieActivateGuard ]
   },
   {
     path: 'movies/:id/edit',
-    canActivate: [ AuthGuard, MovieDetailGuard ],
-    component: MovieEditComponent
+    component: MovieEditComponent,
+    canActivate: [ AuthGuard, MovieActivateGuard ]
   },
   {
     path: 'genres',

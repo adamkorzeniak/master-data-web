@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+// Converts value in minutes to human readable hh:mm
 @Pipe({
     name: 'minutesToHours'
 })
-
 export class MinutesToHoursPipe implements PipeTransform {
 
   public transform(value: number): string {

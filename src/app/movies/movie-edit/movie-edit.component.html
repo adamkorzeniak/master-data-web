@@ -1,70 +1,63 @@
 <div class="container">
-     <div class="row">
-          <form [formGroup]="movieForm" (ngSubmit)="submitMovie()" novalidate>
-               <div class="form-group">
-                    <label class="col-4" for="title">Title</label>
-                    <input class="col-8" id="title" type="text"
-                         formControlName="title"
-                         autofocus/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="year">Year</label>
-                    <input class="col-4" id="year" type="number"
-                         formControlName="year"/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="duration">Duration</label>
-                    <input class="col-4" id="duration" type="number"
-                         formControlName="duration"/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="description">Description</label>
-                    <input class="col-8" id="description" type="text"
-                         formControlName="description" />
-               </div>
-
-               <div class="form-group" formArrayName="genres">
-                  <div class="col-4" for="genre">Genres</div>
-                  <div class="col-7" >
-                    <div *ngFor="let g of genres.controls; let i=index" [formGroupName]="i">
-                      <input (input)='updateList($event)' formControlName="name">
-                      <div class="position-relative" *ngIf="listDisplayed && (i == genres.length - 1)">
-                        <span (click)='chooseGenre(agi)' *ngFor="let ag of matchingGenres; let agi=index">{{ag.name}}</span>
-                        <span (click)='addNewGenre()'>+ {{searchedGenre}}</span>
-                      </div>
-                      <button *ngIf="i < genres.length - 1" type="button" (click)=removeGenre(i)>X</button>
-                    </div>
-                  </div>
-                </div>
-
-
-
-               <div class="form-group">
-                    <label class="col-4" for="watchPriority">Watch Priority</label>
-                    <input class="col-8" id="watchPriority" type="number"
-                         formControlName="watchPriority"/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="rating">Rating</label>
-                    <input class="col-8" id="rating" type="number"
-                         formControlName="rating"/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="review">Review</label>
-                    <input class="col-8" id="review" type="text"
-                         formControlName="review"/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="plotSummary">Plot Summary</label>
-                    <input class="col-8" id="plotSummary" type="text"
-                         formControlName="plotSummary"/>
-               </div>
-               <div class="form-group">
-                    <label class="col-4" for="reviewDate">Review Date</label>
-                    <input class="col-8" id="reviewDate" type="text"
-                         formControlName="reviewDate"/>
-               </div>
-               <button class="col-4 offset-7 button btn-primary" type="submit">Submit</button>
-          </form>
-     </div>
+  <form [formGroup]="movieForm" (ngSubmit)="submitMovie()" novalidate>
+    <div class="row form-group">
+      <label class="col-4" for="title">Title</label>
+      <input class="col-8" id="title" type="text"
+        formControlName="title" autofocus/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="year">Year</label>
+      <input class="col-8" id="year" type="number"
+        formControlName="year"/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="duration">Duration</label>
+      <input class="col-8" id="duration" type="number"
+        formControlName="duration"/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="description">Description</label>
+      <input class="col-8" id="description" type="text"
+        formControlName="description" />
+    </div>
+    <div class="row form-group" formArrayName="genres">
+      <div class="col-4" for="genre">Genres</div>
+      <div class="col-8" >
+        <div style="width: 100%" *ngFor="let g of genres.controls; let i=index" [formGroupName]="i">
+          <input (input)='updateList($event)' formControlName="name">
+          <div class="md-genre-list" *ngIf="listDisplayed && (i == genres.length - 1)">
+            <div style="width: 100%" (click)='chooseGenre(agi)' *ngFor="let ag of matchingGenres; let agi=index">{{ag.name}}</div>
+            <div style="width: 100%" (click)='addNewGenre()'>+ {{searchedGenre}}</div>
+          </div>
+          <button *ngIf="i < genres.length - 1" type="button" (click)=removeGenre(i)>X</button>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="watchPriority">Watch Priority</label>
+      <input class="col-8" id="watchPriority" type="number"
+        formControlName="watchPriority"/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="rating">Rating</label>
+      <input class="col-8" id="rating" type="number"
+        formControlName="rating"/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="review">Review</label>
+      <input class="col-8" id="review" type="text"
+        formControlName="review"/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="plotSummary">Plot Summary</label>
+      <input class="col-8" id="plotSummary" type="text"
+        formControlName="plotSummary"/>
+    </div>
+    <div class="row form-group">
+      <label class="col-4" for="reviewDate">Review Date</label>
+      <input class="col-8" id="reviewDate" type="text"
+        formControlName="reviewDate"/>
+    </div>
+    <button class="col-4 offset-7 button btn-primary" type="submit">Submit</button>
+  </form>
 </div>

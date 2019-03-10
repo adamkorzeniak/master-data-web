@@ -10,7 +10,7 @@ import { MovieService } from '../service/movie-repository.service';
   styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit {
-  private movie: IMovie;
+  protected movie: IMovie;
 
   constructor(
     private movieService: MovieService,
@@ -25,16 +25,14 @@ export class MovieDetailComponent implements OnInit {
   public deleteMovie(movie: IMovie) {
     if (confirm('Delete movie: ' + movie.title + ' (' + movie.year + ') ?')) {
       this.movieService.deleteMovie(movie.id).subscribe(
-        () => console.log('Success'),
-        error => console.log(error)
+        () => console.log('Success')
       );
     }
   }
 
   private retrieveMovie(id: number): void {
     this.movieService.getMovie(id).subscribe(
-      movie => this.movie = movie,
-      null
+      movie => this.movie = movie
     );
   }
 }

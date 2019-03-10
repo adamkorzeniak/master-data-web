@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from './auth/service/auth.service';
 
 @Component({
@@ -8,9 +8,10 @@ import { AuthenticationService } from './auth/service/auth.service';
 })
 export class AppComponent {
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService) {}
 
-  public logout() {
+  protected logout() {
     this.authService.logout();
     location.reload(true);
   }
