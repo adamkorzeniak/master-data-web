@@ -13,7 +13,7 @@ import { IGenre } from '../model/genre';
   styleUrls: ['./movie-edit.component.css']
 })
 export class MovieEditComponent implements OnInit {
-  protected movieForm: FormGroup;
+  public movieForm: FormGroup;
   protected movie: IMovie;
   protected allGenres: IGenre[];
   protected matchingGenres: IGenre[];
@@ -34,8 +34,10 @@ export class MovieEditComponent implements OnInit {
     this.buildMovieForm();
     if (id > 0) {
       this.retrieveMovie(id);
-      this.retrieveGenres();
+    } else {
+      this.pushEmptyGenre();
     }
+    this.retrieveGenres();
   }
 
   public chooseGenre(index: number) {
@@ -76,6 +78,7 @@ export class MovieEditComponent implements OnInit {
       const genre: IGenre = c.value as IGenre;
       genres.push(genre);
     }
+    this.pushEmptyGenre();
     body.genres = genres;
     if (this.movie && this.movie.id) {
       this.movieService.updateMovie(this.movie.id, body).subscribe(

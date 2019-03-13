@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.authenticationService.logout();
         location.reload(true);
       }
-      if (err.error instanceof HttpErrorResponse) {
+      if (err instanceof HttpErrorResponse) {
         alert(JSON.stringify(err.error));
       }
       return of(err);

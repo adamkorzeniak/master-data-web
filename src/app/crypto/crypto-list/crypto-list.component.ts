@@ -8,8 +8,8 @@ import { CryptoService } from '../service/crypto-repository.service';
 })
 export class CryptoListComponent implements OnInit {
 
-  protected cryptoHoldings: ICryptoHolding[] = [];
-  protected sumValue = 0;
+  public cryptoHoldings: ICryptoHolding[] = [];
+  public sumValue = 0;
 
   constructor( private cryptoService: CryptoService) { }
 

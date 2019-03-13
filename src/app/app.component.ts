@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(
     private authService: AuthenticationService) {}
 
-  protected logout() {
+  public logout() {
     this.authService.logout();
     location.reload(true);
   }

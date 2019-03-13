@@ -10,7 +10,7 @@ import { AuthenticationService } from '../service/auth.service';
 @Component({templateUrl: './login.component.html'})
 export class LoginComponent implements OnInit {
 
-  protected loginForm: FormGroup;
+  public loginForm: FormGroup;
   private returnUrl: string;
 
   constructor(
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.buildLoginForm();
   }
 
-  protected onLoginSubmit(): void {
+  public onLoginSubmit(): void {
     const user: IUser = this.loginForm.value;
     this.authService.login(user).subscribe(
       () => this.acceptUser(user)

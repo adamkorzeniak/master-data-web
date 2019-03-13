@@ -7,9 +7,9 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 
 export class StarComponent implements OnInit {
-  protected stars: boolean[] = [];
-  @Input() protected rating: number;
-  @Input() private maxRating: number;
+  public stars: boolean[] = [];
+  @Input() public rating: number;
+  @Input() public maxRating: number;
 
   public ngOnInit(): void {
     for (let i = 0; i < this.maxRating; i++) {

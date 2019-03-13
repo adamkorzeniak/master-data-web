@@ -12,9 +12,9 @@ import { MovieService } from '../service/movie-repository.service';
 })
 
 export class MovieListComponent implements OnInit {
-  protected movies: IMovie[];
-  protected movieSearchForm: FormGroup;
-  protected isSearchVisible = false;
+  public movies: IMovie[];
+  public movieSearchForm: FormGroup;
+  public isSearchVisible = false;
   protected movieSorting: string[] = ['', 'title', 'year', 'duration', 'rating', 'watchPriority'];
   protected sort: string[] = ['', 'asc', 'desc'];
   protected urlParams: any;

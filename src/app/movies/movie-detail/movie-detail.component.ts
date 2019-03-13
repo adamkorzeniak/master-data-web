@@ -10,7 +10,7 @@ import { MovieService } from '../service/movie-repository.service';
   styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit {
-  protected movie: IMovie;
+  public movie: IMovie;
 
   constructor(
     private movieService: MovieService,

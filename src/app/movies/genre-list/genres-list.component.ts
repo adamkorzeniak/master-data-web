@@ -15,10 +15,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./genres-list.component.css']
 })
 export class GenresListComponent implements OnInit {
-  protected genres: IGenre[];
+  public genres: IGenre[];
+  public editedGenreId = -1;
+  public creating = false;
   protected genreSubmitForm: FormGroup;
-  protected editedGenreId = -1;
-  protected creating = false;
 
   constructor(
     private genreService: GenreService,
@@ -28,6 +28,33 @@ export class GenresListComponent implements OnInit {
   public ngOnInit() {
     this.retrieveGenres();
     this.buildGenreSubmitForm();
+  }
+
+  public deleteGenre(index: number, genre: IGenre) {
+    const message = 'Delete genre: ' + genre.name + ' ?';
+    if (confirm(message)) {
+      this.genreService.deleteGenre(genre.id).subscribe(
+        () => this.genres.splice(index, 1)
+      );
+    }
+  }
+
+  public addGenreElement(): void {
+    this.editedGenreId = -1;
+    this.creating = true;
+    this.genreSubmitForm.reset();
+  }
+
+  public updateGenreElement(index: number, genre: IGenre): void {
+    this.editedGenreId = genre.id;
+    this.creating = false;
+    this.setFormValues(index, genre);
+  }
+
+  public discardGenreElement() {
+    this.genreSubmitForm.reset();
+    this.editedGenreId = -1;
+    this.creating =  false;
   }
 
   protected searchMovies(genreName: string): void {
@@ -59,33 +86,6 @@ export class GenresListComponent implements OnInit {
         this.creating =  false;
       }
     );
-  }
-
-  protected discardGenreElement() {
-    this.genreSubmitForm.reset();
-    this.editedGenreId = -1;
-    this.creating =  false;
-  }
-
-  protected deleteGenre(index: number, genre: IGenre) {
-    const message = 'Delete genre: ' + genre.name + ' ?';
-    if (confirm(message)) {
-      this.genreService.deleteGenre(genre.id).subscribe(
-        () => this.genres.splice(index, 1)
-      );
-    }
-  }
-
-  protected addGenreElement(): void {
-    this.editedGenreId = -1;
-    this.creating = true;
-    this.genreSubmitForm.reset();
-  }
-
-  protected updateGenreElement(index: number, genre: IGenre): void {
-    this.editedGenreId = genre.id;
-    this.creating = false;
-    this.setFormValues(index, genre);
   }
 
   private setFormValues(index: number, genre: IGenre) {
