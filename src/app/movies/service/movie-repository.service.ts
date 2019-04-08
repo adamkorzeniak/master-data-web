@@ -7,7 +7,7 @@ import { AppSettings } from '../../app.settings';
 
 @Injectable({ providedIn: 'root' })
 export class MovieService {
-  private readonly MOVIE_URL = AppSettings.HOST + '/Movie/v0/movies';
+  private readonly MOVIE_URL = AppSettings.REST_URL + '/v0/Movie/movies';
 
   constructor( private http: HttpClient ) {}
 

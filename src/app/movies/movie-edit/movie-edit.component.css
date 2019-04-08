@@ -1,8 +1,8 @@
 .md-genre-list {
   position: absolute;
   background-color: white;
+  width: 100%;
   z-index: 1000;
-  overflow-x: visible;
 }
 
 .md-genre-list div {

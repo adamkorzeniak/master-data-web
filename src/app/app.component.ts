@@ -15,4 +15,8 @@ export class AppComponent {
     this.authService.logout();
     location.reload(true);
   }
+
+  public isLogged(): boolean {
+    return this.authService.isAuthorised();
+  }
 }

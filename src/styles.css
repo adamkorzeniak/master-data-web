@@ -2,3 +2,32 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+body {
+  background-color: #e4d7eb
+}
+
+.pointer {
+  cursor: pointer
+}
+
+a {
+  color: #500289;
+  text-decoration: none !important;
+}
+
+.btn {
+  background-color: #500289 !important;
+  border: #500289 !important;
+}
+
+.card {
+  background-color: #eae3f0;
+}
+
+.md-bg-light {
+  background-color: #eae3f0;
+}
+
+.md-bg-dark {
+  background-color: #500289 !important;
+}

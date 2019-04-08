@@ -1,92 +1,104 @@
-<div class="container-fluid">
-  <div class="row">
-    <button class="col-5 col-sm-2 offset-1 button btn-primary" type="button"
+<div class="container">
+  <div class="row justify-content-center">
+    <button class="btn btn-success m-1 mx-3 px-3 m-md-3 mx-md-5 px-md-5" type="button"
       [routerLink]="['/movies/create']">Add Movie</button>
-    <button class="col-6 col-sm-2 offset-1 button btn-primary" type="button"
+    <button class="btn btn-success m-1 mx-3 px-3 m-md-3 mx-md-5 px-md-5" type="button"
       title="TooggleSearch" [disabled]="!movieSearchForm.valid"
       (click)="isSearchVisible = !isSearchVisible">Toogle Search</button>
   </div>
-  <div class="row">
-    <form [formGroup]="movieSearchForm" (ngSubmit)="initiateSearch()"
-      novalidate *ngIf="isSearchVisible">
-      <div class="form-group">
-        <label class="col-4" for="titleSearch">Title</label>
-        <input class="col-8" id="titleSearch" type="text"
-          formControlName="title" autofocus
-          [ngClass]="{'is-invalid': true}"/>
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="year">Year</label>
-        <input class="col-4" id="year" type="number"
-          formControlName="minYear"/>
-        <input class="col-4" id="year" type="number"
-          formControlName="maxYear"/>
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="duration">Duration</label>
-        <input class="col-4" id="duration" type="number"
-          formControlName="minDuration"/>
-        <input class="col-4" id="duration" type="number"
-          formControlName="maxDuration"/>
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="genres">Genres</label>
-        <input class="col-8" id="genres" type="text"
-          formControlName="genres" />
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="watchPriority">Watch Priority</label>
-        <input class="col-4" id="watchPriority" type="number"
-          formControlName="minWatchPriority"/>
-        <input class="col-4" id="watchPriority" type="number"
-          formControlName="maxWatchPriority"/>
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="rating">Rating</label>
-        <input class="col-4" id="rating" type="number"
-          formControlName="minRating"/>
-        <input class="col-4" id="rating" type="number"
-          formControlName="maxRating"/>
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="descriptionSearch">Description</label>
-        <input class="col-8" id="descriptionSearch" type="text"
-          formControlName="description" />
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="order">Order</label>
-        <select class="col-4" id="order" formControlName="order">
-          <option *ngFor="let o of movieSorting" [selected]="o === urlParams.order">{{ o }}</option>
-        </select>
-        <select class="col-4" id="sort" formControlName="sort">
-          <option *ngFor="let type of sort" [selected]="type === urlParams.sort">{{ type }}</option>
-        </select>
-      </div>
-      <button class="col-4 offset-2 button btn-primary" type="button"
+  <form class="form-horizontal my-1" [formGroup]="movieSearchForm" (ngSubmit)="initiateSearch()"
+    novalidate autocomplete="off" *ngIf="isSearchVisible">
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="titleSearch">Title</label>
+      <input class="col-11 col-md-6 col-xl-6 mx-2 mx-md-0" id="titleSearch" type="text"
+        formControlName="title"/>
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="year">Year</label>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="year" type="number"
+        formControlName="minYear" min="1800" max="2100"/>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="year" type="number"
+        formControlName="maxYear" min="1800" max="2100"/>
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="duration">Duration</label>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="duration" type="number"
+        formControlName="minDuration" min="0" max="1000"/>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="duration" type="number"
+        formControlName="maxDuration" min="0" max="1000"/>
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="genres">Genres</label>
+      <input class="col-11 col-md-6 col-xl-6 mx-2 mx-md-0" id="genres" type="text"
+        formControlName="genres" />
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="watchPriority">Watch Priority</label>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="watchPriority" type="number"
+        formControlName="minWatchPriority" min="0" max="5"/>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="watchPriority" type="number"
+        formControlName="maxWatchPriority" min="0" max="5"/>
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="rating">Rating</label>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="rating" type="number"
+        formControlName="minRating" min="0" max="10"/>
+      <input class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="rating" type="number"
+        formControlName="maxRating" min="0" max="10"/>
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="descriptionSearch">Description</label>
+      <input class="col-11 col-md-6 col-xl-6 mx-2 mx-md-0" id="descriptionSearch" type="text"
+        formControlName="description" />
+    </div>
+    <div class="row justify-content-start justify-content-md-center form-group">
+      <label class="col-12 col-md-3 col-xl-2" for="order">Order</label>
+      <select class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="order" formControlName="order">
+        <option *ngFor="let o of movieSorting" [selected]="o === urlParams.order">{{ o }}</option>
+      </select>
+      <select class="col-5 col-md-3 col-xl-3 mx-2 mx-md-0" id="sort" formControlName="sort">
+        <option *ngFor="let type of sort" [selected]="type === urlParams.sort">{{ type }}</option>
+      </select>
+    </div>
+    <div class="row justify-content-center">
+      <button class="btn btn-success m-1 mx-4 px-4 m-md-3 mx-md-5 px-md-5" type="button"
         (click)="resetForm()">Reset</button>
-      <button class="col-5 offset-1 button btn-primary" type="submit">Search</button>
-    </form>
-  </div>
-  <div class="row" *ngIf='movies && movies.length'>
-    <div class="card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor='let movie of movies; let index = index'>
-      <div class="card-body">
-        <div class="card-title">
-          <a [routerLink]="['/movies', movie.id]">{{ movie.title }} ({{ movie.year }})</a>
+      <button class="btn btn-success m-1 mx-4 px-4 m-md-3 mx-md-5 px-md-5" type="submit">Search</button>
+    </div>
+  </form>
+  <div class="row justify-content-center" *ngIf='movies && movies.length'>
+    <div class="card my-1 col-11 col-md-8 col-xl-8" *ngFor='let movie of movies; let index = index'>
+      <div id="movie-{{index}}" class="row justify-content-center">
+        <div class="col-4 col-xl-3 py-2 px-1">
+          <img class="card-img image-responsive"
+          src="../../../assets/images/movies/{{movie.imageLocation || 'no-image.png'}}"
+          alt="Image not found">
         </div>
-        <div class="card-text">
-          {{ movie.duration | minutesToHours }}
+        <div class="card-body col-8 col-xl-9 py-2 px-2">
+          <div class="card-title">
+            <a [routerLink]="['/movies', movie.id]">{{ movie.title }} ({{ movie.year }})</a>
+          </div>
+          <div class="card-text">
+            {{ movie.duration | minutesToHours }}
+          </div>
+          <div class="card-text">
+            {{ movie.genres | genre }}
+          </div>
+          <div class="card-text">
+            {{ movie.watchPriority | watchPriority }}
+          </div>
+          <div class="card-text" *ngIf="movie.rating != null">
+            <md-star [rating]='movie.rating' [maxRating]=10 *ngIf="movie.rating > 0"></md-star>
+            <span class="ml-1" *ngIf="movie.rating > 0">({{ movie.rating }})</span>
+            <span *ngIf="movie.rating == 0">Watched (no rating)</span>
+          </div>
         </div>
-        <div class="card-text">
-          {{ movie.genres | genre }}
+        <div class="col-10 py-2">
+          <button class="btn btn-success card-link mx-4 mx-md-5"
+            [routerLink]="['/movies', movie.id, 'edit']">Update</button>
+          <button class="btn btn-success card-link mx-4 mx-md-5"
+            (click)='deleteMovie(index, movie)'>Delete</button>
         </div>
-        <div class="card-text">
-          {{ movie.watchPriority | watchPriority }}
-          <md-star class="col-12" [rating]='movie.rating' [maxRating]=10></md-star>
-        </div>
-        <button class="button btn-primary card-link"
-          [routerLink]="['/movies', movie.id, 'edit']">Update</button>
-        <button class="button btn-primary card-link"
-          (click)='deleteMovie(index, movie)'>Delete</button>
       </div>
     </div>
   </div>

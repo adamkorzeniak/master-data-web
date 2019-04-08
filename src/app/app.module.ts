@@ -13,19 +13,23 @@ import { ErrorModule } from './error/error.module';
 import { GlobalErrorHandler } from './error/handler/global-error-handler';
 import { CryptoModule } from './crypto/crypto.module';
 import { ErrorInterceptor } from './error/error.interceptor';
+import { HomeComponent } from './home/home.component';
+import { DietModule } from './diet/diet.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     MovieModule,
+    DietModule,
     CryptoModule,
     AuthModule,
     ErrorModule,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

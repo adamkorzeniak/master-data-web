@@ -14,10 +14,10 @@ import { IGenre } from '../model/genre';
 })
 export class MovieEditComponent implements OnInit {
   public movieForm: FormGroup;
+  public listDisplayed: boolean;
   protected movie: IMovie;
   protected allGenres: IGenre[];
   protected matchingGenres: IGenre[];
-  protected listDisplayed: boolean;
   protected searchedGenre: string;
 
   constructor(

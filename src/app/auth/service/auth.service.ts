@@ -14,7 +14,7 @@ import { IUser } from '../model/user';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
-  private readonly AUTH_URL: string = AppSettings.HOST + '/v0/me';
+  private readonly AUTH_URL: string = AppSettings.REST_URL + '/v0/me';
   private readonly AUTH_STORAGE_LOCATION = 'authData';
 
   constructor(private http: HttpClient) { }

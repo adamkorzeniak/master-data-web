@@ -1,9 +1,3 @@
-.crop {
-  overflow: hidden;
-}
-div {
-  cursor: pointer;
-}
-.checked {
+.md-checked {
   color: orange
 }

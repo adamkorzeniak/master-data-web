@@ -24,9 +24,7 @@ export class MovieDetailComponent implements OnInit {
 
   public deleteMovie(movie: IMovie) {
     if (confirm('Delete movie: ' + movie.title + ' (' + movie.year + ') ?')) {
-      this.movieService.deleteMovie(movie.id).subscribe(
-        () => console.log('Success')
-      );
+      this.movieService.deleteMovie(movie.id).subscribe();
     }
   }
 

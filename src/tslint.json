@@ -38,9 +38,6 @@
             }
         ],
         "no-string-literal": false
-// Temporary
-        ,
-        "no-console": false
     },
     "jsRules": { "object-literal-sort-keys": false }
 }

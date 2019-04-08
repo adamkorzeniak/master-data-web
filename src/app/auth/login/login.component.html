@@ -1,17 +1,36 @@
 <div class="container">
-  <div class="row">
-    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" novalidate>
-      <div class="form-group">
-        <label class="col-4" for="username">username</label>
-        <input class="col-8" id="username" type="text"
-          formControlName="username"/>
-      </div>
-      <div class="form-group">
-        <label class="col-4" for="password">password</label>
-        <input class="col-4" id="password" type="text"
-          formControlName="password"/>
-      </div>
-      <button class="col-4 offset-7 button btn-primary" type="submit">Submit</button>
-    </form>
+  <div class="md-bg-light m-1 p-2  my-sm-2 rounded" *ngIf="!isProdMode">
+    <p>
+      This is Stage version of application.<br>
+      Please ensure that you have outgoing port 8443 open for communication with REST API.<br>
+      Please also note that I am not responsible for content of this version as credentials are available for anyone.<br>
+      I am not a frontend developed therefore it leaves a lot to be desired. It was build for me to ease communication with backend server<br>
+      Main goal of this application was to improve my skills in Spring, Hibernate and REST APIs and to provide me a usefull application<br>
+      This website and REST server are hosted on Raspberry Pi using my private wifi connection.<br>
+    </p>
+    <p>
+      Username: test<br>
+      Password: test123
+    </p>
+  </div>
+  <div class="card card-outline-secondary m-1  my-sm-2">
+    <div class="card-header">
+        <h3 class="mb-0">Login</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form" autocomplete="off" novalidate>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username"
+                  formControlName="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password"
+                formControlName="password">
+            </div>
+            <button type="submit" class="btn btn-success btn-lg float-right">Login</button>
+        </form>
+    </div>
   </div>
 </div>

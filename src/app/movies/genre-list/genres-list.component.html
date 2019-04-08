@@ -1,21 +1,23 @@
 <div class="container">
-  <button class="col-5 col-sm-2 button btn-primary" type="button"
+  <button class="btn btn-success m-3" type="button"
     (click)="addGenreElement()">Add Genre</button>
-  <div class="card" *ngIf='creating'>
+  <div class="card my-2" *ngIf='creating'>
     <div class="card-header">
-      <form [formGroup]="genreSubmitForm" id="createGenreForm" (ngSubmit)="createGenre()">
+      <form [formGroup]="genreSubmitForm" id="createGenreForm" autocomplete="off" (ngSubmit)="createGenre()">
         <input formControlName="name" type="text"/>
       </form>
     </div>
     <div class="card-body">
-      <button class="button btn-primary card-link"
-        type="submit" form="createGenreForm">Save</button>
+      <button class="btn btn-success card-link"
+        type="submit" form="createGenreForm">Create</button>
+      <button class="btn btn-success card-link"
+        (click)="discardGenreElement()">Discard</button>
     </div>
   </div>
-  <div class="card" *ngFor='let genre of genres; let index = index'>
+  <div class="card my-2" *ngFor='let genre of genres; let index = index'>
     <div class="card-header">
       <span *ngIf="genre.id != editedGenreId">{{ genre.name }}</span>
-      <form [formGroup]="genreSubmitForm" (ngSubmit)="updateGenre()"
+      <form [formGroup]="genreSubmitForm" (ngSubmit)="updateGenre()" autocomplete="off"
         *ngIf="genre.id == editedGenreId" id="updateGenreForm">
         <input formControlName="index" type="hidden"/>
         <input formControlName="id" type="hidden"/>
@@ -23,15 +25,15 @@
       </form>
     </div>
     <div class="card-body">
-      <button class="button btn-primary card-link"
+      <button class="btn btn-success card-link"
         *ngIf="genre.id != editedGenreId" (click)="searchMovies(genre.name)">Movies</button>
-      <button class="button btn-primary card-link"
+      <button class="btn btn-success card-link"
         *ngIf="genre.id != editedGenreId" (click)="updateGenreElement(index, genre)">Update</button>
-      <button class="button btn-primary card-link"
+      <button class="btn btn-success card-link"
         *ngIf="genre.id == editedGenreId" type="submit" form="updateGenreForm">Save</button>
-      <button class="button btn-primary card-link"
+      <button class="btn btn-success card-link"
         *ngIf="genre.id == editedGenreId" (click)="discardGenreElement()">Discard</button>
-      <button class="button btn-primary card-link"
+      <button class="btn btn-success card-link"
         (click)="deleteGenre(index, genre)"deleteGenre>Delete</button>
     </div>
   </div>

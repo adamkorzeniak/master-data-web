@@ -1,63 +1,66 @@
 <div class="container">
-  <form [formGroup]="movieForm" (ngSubmit)="submitMovie()" novalidate>
-    <div class="row form-group">
-      <label class="col-4" for="title">Title</label>
-      <input class="col-8" id="title" type="text"
+  <form class="form-horizontal my-1 my-sm-1" [formGroup]="movieForm" (ngSubmit)="submitMovie()" novalidate autocomplete="off">
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="title">Title</label>
+      <input class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="title" type="text"
         formControlName="title" autofocus/>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="year">Year</label>
-      <input class="col-8" id="year" type="number"
-        formControlName="year"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="year">Year</label>
+      <input class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="year" type="number"
+        formControlName="year" min="1800" max="2100"/>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="duration">Duration</label>
-      <input class="col-8" id="duration" type="number"
-        formControlName="duration"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="duration">Duration</label>
+      <input class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="duration" type="number"
+        formControlName="duration" min="1" max="1000"/>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="description">Description</label>
-      <input class="col-8" id="description" type="text"
-        formControlName="description" />
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="description">Description</label>
+      <textarea class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="description" type="text"
+      formControlName="description"></textarea>
     </div>
-    <div class="row form-group" formArrayName="genres">
-      <div class="col-4" for="genre">Genres</div>
-      <div class="col-8" >
-        <div style="width: 100%" *ngFor="let g of genres.controls; let i=index" [formGroupName]="i">
-          <input (input)='updateList($event)' formControlName="name">
-          <div class="md-genre-list" *ngIf="listDisplayed && (i == genres.length - 1)">
-            <div style="width: 100%" (click)='chooseGenre(agi)' *ngFor="let ag of matchingGenres; let agi=index">{{ag.name}}</div>
-            <div style="width: 100%" (click)='addNewGenre()'>+ {{searchedGenre}}</div>
+    <div class="row justify-content-start justify-content-sm-center form-group" formArrayName="genres">
+      <div class="col-12 col-sm-4 col-lg-2" for="genre">Genres</div>
+      <div class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0 px-0" >
+        <div class="row mx-0 mt-1" *ngFor="let g of genres.controls; let i=index" [formGroupName]="i">
+          <input class="col-10 col-sm-11 pr-1" (input)='updateList($event)' formControlName="name">
+          <div class="col-1 mt-1">
+            <button *ngIf="i < genres.length - 1" type="button" (click)="removeGenre(i)">X</button>
+            <button *ngIf="listDisplayed && (i == genres.length - 1)" type="button" (click)="listDisplayed = false">X</button>
           </div>
-          <button *ngIf="i < genres.length - 1" type="button" (click)=removeGenre(i)>X</button>
+        </div>
+        <div class="md-genre-list" *ngIf="listDisplayed">
+          <div class="p-1" (click)='chooseGenre(agi)' *ngFor="let ag of matchingGenres; let agi=index">{{ag.name}}</div>
+          <div class="p-1" (click)='addNewGenre()'>+ {{searchedGenre}}</div>
         </div>
       </div>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="watchPriority">Watch Priority</label>
-      <input class="col-8" id="watchPriority" type="number"
-        formControlName="watchPriority"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="watchPriority">Watch Priority</label>
+      <input class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="watchPriority" type="number"
+        formControlName="watchPriority" min="0" max="5"/>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="rating">Rating</label>
-      <input class="col-8" id="rating" type="number"
-        formControlName="rating"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="rating">Rating</label>
+      <input class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="rating" type="number"
+        formControlName="rating" min="0" max="10"/>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="review">Review</label>
-      <input class="col-8" id="review" type="text"
-        formControlName="review"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="review">Review</label>
+      <textarea class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="review" type="text"
+        formControlName="review"></textarea>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="plotSummary">Plot Summary</label>
-      <input class="col-8" id="plotSummary" type="text"
-        formControlName="plotSummary"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="plotSummary">Plot Summary</label>
+      <textarea class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="plotSummary" type="text"
+        formControlName="plotSummary"></textarea>
     </div>
-    <div class="row form-group">
-      <label class="col-4" for="reviewDate">Review Date</label>
-      <input class="col-8" id="reviewDate" type="text"
-        formControlName="reviewDate"/>
+    <div class="row justify-content-start justify-content-sm-center form-group">
+      <label class="col-12 col-sm-4 col-lg-2" for="reviewDate">Review Date</label>
+      <input class="col-11 col-sm-8 col-lg-6 mx-2 mx-sm-0" id="reviewDate" type="date"
+        formControlName="reviewDate" placeholder="01-01-2019"/>
     </div>
-    <button class="col-4 offset-7 button btn-primary" type="submit">Submit</button>
+    <button class="col-4 offset-7 btn btn-success" type="submit">Submit</button>
   </form>
 </div>

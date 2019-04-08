@@ -3,8 +3,7 @@ import { ICryptoHolding } from '../model/crypto-holding';
 import { CryptoService } from '../service/crypto-repository.service';
 
 @Component({
-  templateUrl: './crypto-list.component.html',
-  styleUrls: ['./crypto-list.component.css']
+  templateUrl: './crypto-list.component.html'
 })
 export class CryptoListComponent implements OnInit {
 

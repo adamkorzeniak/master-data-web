@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <button class="btn btn-success m-1" type="button"
+        (click)="moveDayBack()">&lt;</button>
+      <div class="btn btn-success m-1" type="button">{{ diaryDate | date }}</div>
+      <button class="btn btn-success m-1" type="button"
+      (click)="moveDayForward()">&gt;</button>
+    </div>
+    <div class="md-bg-light font-weight-bold my-1 row ps-2">
+      <div class="col-7 col-sm-4 col-md-5">Product</div>
+      <div class="col-5 col-sm-2 col-md-2">Calories</div>
+      <div class=" col-sm-5 col-md-4 d-none d-sm-block">
+        <div class="row m-0 p-0">
+            <div class="col-sm-4">Carbs</div>
+            <div class="col-sm-4">Fats</div>
+            <div class="col-sm-4">Proteins</div>
+          </div>
+      </div>
+      <div class="col-sm-1 d-none d-md-block"></div>
+    </div>
+    <div *ngFor='let item of diaryItems; let index = index'
+      class="md-bg-light md-diaryItem my-1 row ps-2">
+      <div class="col-7 col-sm-4 col-md-5 pointer">{{ item.productName }} ({{ item.amount }} {{ item.unitName }})</div>
+      <div class="col-4 col-sm-2 col-md-2">{{ item.calories }}</div>
+      <div class=" col-sm-5 col-md-4 d-none d-sm-block">
+          <div class="row m-0 p-0">
+              <div class="col-sm-4">{{ item.carbs }}</div>
+              <div class="col-sm-4">{{ item.fats }}</div>
+              <div class="col-sm-4">{{ item.proteins }}</div>
+            </div>
+        </div>
+      <button class="btn btn-success col-1 p-0" type="button"
+        (click)="deleteItem(index)">X</button>
+    </div>
+    <div class="md-bg-light font-weight-bold my-1 row ps-2">
+      <div class="col-4 col-md-2 offset-md-6">Goal: {{ calorieGoal }}</div>
+      <div class="col-4 col-md-2">Food: {{ calorieSum }}</div>
+      <div [style.color]="calorieGoal > calorieSum ? 'green' : 'red'"
+       class="col-4 col-md-2">Left: {{ calorieGoal - calorieSum }}</div>
+    </div>
+    <div class="md-bg-light font-weight-bold my-1 row ps-2">
+      <button class="btn btn-success col-2 offset-10 p-0" type="button">Add</button>
+    </div>
+</div>

@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 //  Create genre
 //  Remove genre
 @Component({
-  templateUrl: './genres-list.component.html',
-  styleUrls: ['./genres-list.component.css']
+  templateUrl: './genres-list.component.html'
 })
 export class GenresListComponent implements OnInit {
   public genres: IGenre[];

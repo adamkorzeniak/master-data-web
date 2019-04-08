@@ -11,5 +11,6 @@ export interface IMovie {
     review: string;
     plotSummary: string;
     reviewDate: string;
+    imageLocation: string;
     genres: IGenre[];
 }

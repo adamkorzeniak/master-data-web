@@ -6,13 +6,13 @@ const routes: Routes = [
   {
     path: 'error',
     component: ErrorComponent
-  },
-  {
-    path: '**',
-    component: ErrorComponent,
-    data: { error: 404 }
-  }
-]
+  }// ,
+  // {
+  //   path: '**',
+  //   component: ErrorComponent,
+  //   data: { error: 404 }
+  // }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

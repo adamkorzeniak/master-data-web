@@ -9,7 +9,7 @@ import { IError } from '../model/error';
 
 @Injectable({ providedIn: 'root' })
 export class ErrorsService {
-  private readonly ERROR_URL = AppSettings.HOST + '/Error/v0/errors';
+  private readonly ERROR_URL = AppSettings.REST_URL + '/v0/Error/errors';
 
   constructor(
     private injector: Injector,
@@ -22,7 +22,7 @@ export class ErrorsService {
         if (event instanceof NavigationError) {
           this.log(event.error)
             .subscribe((errorWithContext) => {
-              this.router.navigate(['/error'], { queryParams: errorWithContext })
+              this.router.navigate(['/error'], { queryParams: errorWithContext });
             });
         }
       });
