@@ -1,6 +1,6 @@
 <div class="container">
-  <form class="row m-3" autocomplete="off" (ngSubmit)="searchProducts()">
-    <input class="col-6" id="name" type="text" required>
+  <form class="row m-3" autocomplete="off" (submit)="searchProducts()">
+    <input class="col-6" id="name" name="name" type="text" [(ngModel)]="searchedName" required>
     <button class="btn btn-success col-1 offset-1" type="submit">
       Search
     </button>
@@ -10,9 +10,10 @@
       (click)="displayEmptyProduct()">Create</button>
   </form>
   <div *ngIf="!productSelected && !creatingProduct">
-    <ul class="row list-unstyled m-3 list-group"
-      *ngFor="let product of productList; let index = index">
-      <li class="col-6 mr-1 list-group-item" (click)="selectProduct(index)">{{ product.name }}</li>
+    <ul class="row list-unstyled m-3 list-group">
+      <li class="col-6 mr-1 list-group-item" (click)="selectProduct(index)"
+      *ngFor="let product of productList; let index = index"
+      >{{ product.name }}{{ product.characteristic ? (' - ' + product.characteristic) : ''}}</li>
     </ul>
   </div>
   <form [formGroup]="productForm" (ngSubmit)="submitProduct()" *ngIf="productSelected || creatingProduct"
@@ -22,11 +23,15 @@
       <input class="col-8" type="text" formControlName="name">
     </div>
     <div class="row form-group">
+      <label class="col-4">Characteristic</label>
+      <input class="col-8" type="text" formControlName="characteristic">
+    </div>
+    <div class="row form-group">
       <label class="col-4">Unit</label>
       <input class="col-2" type="text" value="100" disabled>
-      <select class="col-6" formControlName="unit">
-        <option selected>gram</option>
-        <option selected>mililitr</option>
+      <select class="col-6" formControlName="baseUnit">
+        <option>gram</option>
+        <option>mililitr</option>
       </select>
     </div>
     <div class="row form-group">
@@ -46,11 +51,13 @@
       <input class="col-8" type="number" formControlName="proteins">
     </div>
     <div class="row">
-      <button class="btn btn-success col-2 offset-2" type="button"
+      <button class="btn btn-success col-2 offset-1" type="button"
         click="searchProducts()">Add Meal</button>
-      <button class="btn btn-success col-2 offset-2" type="submit"
+        <button class="btn btn-success col-2 offset-1" type="button"
+          click="addUnit()">Add Unit</button>
+      <button class="btn btn-success col-2 offset-1" type="submit"
         [disabled]="!editingProduct && !creatingProduct">Save</button>
-      <button class="btn btn-success col-2 offset-2" type="button"
+      <button class="btn btn-success col-2 offset-1" type="button"
         (click)="discardProduct()" [disabled]="!editingProduct && !creatingProduct">Discard</button>
     </div>
   </form>

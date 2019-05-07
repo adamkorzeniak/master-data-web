@@ -1,27 +1,47 @@
-# MasterDataWeb
+# Master Data Web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
+Website providing an ability to manage personal data database (eg. watched movies, diet details) using REST Server.
+Currently it supports only movies related data.
 
-## Development server
+You can check website below:
+[Master Data Web](https://www.adamkorzeniak.pl/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Features
+- Retrieve and manage movie data
 
-## Code scaffolding
+##### Movie functionality
+- Search database for movies based on filters
+- Display specific movie details
+- Search movie using Google Search
+- Create movie in database
+- Update movie details in database
+- Delete movie
+- Display movie genres
+- Display movies for certain genre
+- Create genre in database
+- Update genre in database
+- Delete genre
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##### Diet functionality (in progress)
+- 
 
-## Build
+## Deployed version
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+There are currently two environments deployed:
+- Stage
+https://www.adamkorzeniak.pl
+Username: test
+Password: test123
+- Production
 
-## Running unit tests
+Both environments are deployed on Raspberry Pi using my private internet connection. In case of any internet or hardware issues servers might not be accessible. Please feel free to notify me via email or other way.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Website
 
-## Running end-to-end tests
+You can check website below:
+[Master Data Web](https://www.adamkorzeniak.pl/)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Built With
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* [Typescript](https://www.typescriptlang.org/) - Programming language
+* [Angular](https://angular.io/) - Application Framework

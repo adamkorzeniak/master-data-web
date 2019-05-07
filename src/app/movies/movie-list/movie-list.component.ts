@@ -37,6 +37,7 @@ export class MovieListComponent implements OnInit {
   }
 
   protected initiateSearch(): void {
+    this.isSearchVisible = false;
     this.resetParams();
     this.buildParams();
     this.searchMovie();
