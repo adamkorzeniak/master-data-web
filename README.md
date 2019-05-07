@@ -28,10 +28,15 @@ You can check website below:
 ## Deployed version
 
 There are currently two environments deployed:
+
 - Stage
+
 https://www.adamkorzeniak.pl
+
 Username: test
+
 Password: test123
+
 - Production
 
 Both environments are deployed on Raspberry Pi using my private internet connection. In case of any internet or hardware issues servers might not be accessible. Please feel free to notify me via email or other way.
