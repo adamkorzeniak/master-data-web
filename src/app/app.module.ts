@@ -15,6 +15,8 @@ import { CryptoModule } from './crypto/crypto.module';
 import { ErrorInterceptor } from './error/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { DietModule } from './diet/diet.module';
+import { FlashcardComponent } from './flashcard/flashcard.component';
+import { FlashcardModule } from './flashcard/flashcard.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { DietModule } from './diet/diet.module';
     HttpClientModule,
     MovieModule,
     DietModule,
+    FlashcardModule,
     CryptoModule,
     AuthModule,
     ErrorModule,

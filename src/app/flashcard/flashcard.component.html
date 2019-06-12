@@ -1,0 +1,18 @@
+<div class="card my-2">
+  <div class="card-header front" (click)="toogle()">
+    <div>{{ flashcards[currentCardId].front }}</div>
+  </div>
+  <div *ngIf="uncovered" class="card-body back">
+    {{ flashcards[currentCardId].back }}
+  </div>
+  <div class="card-body">
+    <button [disabled]="currentCardId <= 0" class="btn btn-success card-link"
+      (click)="previousCard()">&lt;&lt;</button>
+    <button [disabled]="currentCardId >= flashcards.length - 1" class="btn btn-success card-link"
+      (click)="nextCard()">&gt;&gt;</button>
+  </div>
+</div>
+<div>
+  <button class="btn btn-success"
+    (click)="displayAddingCardForm()">Add new card</button>
+</div>
