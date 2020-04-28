@@ -1,0 +1,342 @@
+[
+	{
+		"title": "SonarQube - analiza statyczna kodu",
+		"description": "Analiza statyczna kodu i rozważenie które z sugestii należy wykorzystać",
+		"tags": ["Narzędzia", "Metodyka"]
+	},
+	{
+		"title": "Brak długu",
+		"description": "Dług można zaakceptować jeśli mamy konkretny plan w niedalekiej przyszłości na spłatę",
+		"tags": ["Czytelność", "Dług", "Miękkie", "Metodyka"]
+	},
+	{
+		"title": "Refaktoryzacja kodu legacy",
+		"description": "Poprawiaj kod legacy bez obawy, że ingerujesz w cudzy znajomy bałagan",
+		"tags": ["Czytelność", "Metodyka"]
+	},
+	{
+		"title": "Weryfikacja założeń",
+		"description": "Wszystkie założenia podczas próby zrozumienia problemu i implementacji należy zanotować, zweryfikować i udokumentować",
+		"tags": ["Wymagania", "Funkcjonalność", "Metodyka"]
+	},
+	{
+		"title": "Szukanie w Google",
+		"description": "Sprawdź czy w google nie znajdziesz lepszego rozwiązania problemu",
+		"tags": ["Pragmatyzm", "Czytelność", "Jakość", "Metodyka"]
+	},
+	{
+		"title": "Kod czyta się dobrze",
+		"description": "Kod czyta się jak dobrze napisaną prozę, nawet przez osoby ze znikomą wiedzą techniczną",
+		"tags": ["Czytelność"]
+	},
+	{
+		"title": "Wydajność przetestowana",
+		"description": "Przetestuj wydajność pod kątem bottlenecków za pomocą System.out.print",
+		"tags": ["Wydajność"]
+	},
+	{
+		"title": "Test Driven Development",
+		"description": "Stosuj podejście TDD",
+		"tags": ["Testy", "Metodyka"]
+	},
+	{
+		"title": "Jeden test weryfikuje jedną koncepcję",
+		"description": "Nie testuj kilku przypadków w jednym teście, Nieudany test powinien jednoznacznie pokazywać co poszło nie tak",
+		"tags": ["Testy"]
+	},
+	{
+		"title": "Kod testowy jest dobrej jakości",
+		"description": "Kod testowy powinien spełniać te same standardy jakości jak kod właściwy",
+		"tags": ["Testy", "Metodyka"]
+	},
+	{
+		"title": "Testy - Odpowiednie pokrycie",
+		"description": "Kod powinien mieć odpowiednie pokrycie testami np. 70-80%",
+		"tags": ["Testy"]
+	},
+	{
+		"title": "Testy testują warunki graniczne",
+		"description": "Weryfikuj, że kod zachowa się w sposób oczekiwany podczas warunków granicznych (obojętnie czy się ma wysypać czy nie)",
+		"tags": ["Testy"]
+	},
+	{
+		"title": "Testy testują kod",
+		"description": "Testy nie służą jedynie zwiększeniu pokryciu, weryfikują nieoczekiwane zachowania i pokazują błędy",
+		"tags": ["Testy"]
+	},
+	{
+		"title": "Nazwy są jednoznaczne",
+		"description": "Nie ma potrzeby się zastanawiać co oznacza dana nazwa. Komentarz byłby niepotrzebny",
+		"tags": ["Nazewnictwo"]
+	},
+	{
+		"title": "Brak literówek",
+		"description": null,
+		"tags": ["Nazewnictwo"]
+	},
+	{
+		"title": "Nazwy zawierają jednostki",
+		"description": "Jeśli nie wiadomo w jakiej jednostce może być zmienna, należy jednostkę zawrzeć w nazwie zmiennej",
+		"tags": ["Nazewnictwo"]
+	},
+	{
+		"title": "Nazwy opisują abstrakcję",
+		"description": "Nazwy opisują abstrakcję a nie implementację, przykładowo isElligibleForBonus a nie isMaleSeniorDeveloperWithSoftSkills",
+		"tags": ["Nazewnictwo"]
+	},
+	{
+		"title": "Nazwy używają pojęć z domeny biznesowej",
+		"description": null,
+		"tags": ["Nazewnictwo"]
+	},
+	{
+		"title": "Brak negatywnych nazw",
+		"description": "Nie używaj nazw z notXXX",
+		"tags": ["Nazewnictwo"]
+	},
+	{
+		"title": "Komentarz - tylko, gdy tłumaczą potencjalnie niezrozumiałe rozwiązanie",
+		"description": "Nie używaj komentarzy, gdy potencjalnie niezrozumiałe rozwiązanie da się wytłumaczyć odpowiednim nazwenictwame zmiennych i wydzielaniem metod",
+		"tags": ["Komentarze"]
+	},
+	{
+		"title": "Log zawiera kontekst wywołania",
+		"description": "Najlepiej correlationId zainicjowane i wylowowane na początku wraz z kontekstem",
+		"tags": ["Logowanie"]
+	},
+	{
+		"title": "Logowanie wejścia/wyjścia API aplikacji",
+		"description": null,
+		"tags": ["Logowanie"]
+	},
+	{
+		"title": "Logowanie wejścia/wyjścia do zewnętrznych API",
+		"description": null,
+		"tags": ["Logowanie"]
+	},
+	{
+		"title": "Logowania istotnych kroków do debugowania",
+		"description": null,
+		"tags": ["Logowanie"]
+	},
+	{
+		"title": "Logowanie błędów",
+		"description": null,
+		"tags": ["Logowanie", "Wyjątki"]
+	},
+	{
+		"title": "Preferuj standardowe wyjątki",
+		"description": "Preferuj standardowe wyjątki jeśli nie potrzebujesz niestandardowej obsługi lub funkcjonalności",
+		"tags": ["Wyjątki"]
+	},
+	{
+		"title": "Stacktrace nie jest logowany",
+		"description": "Zbuduj wyjątek i go wyloguj",
+		"tags": ["Wyjątki", "Bezpieczeństwo"]
+	},
+	{
+		"title": "Try zawiera tylko kod mogący rzucić oczekiwanym wyjątkiem",
+		"description": null,
+		"tags": ["Wyjątki"]
+	},
+	{
+		"title": "Łapanie jak najwęższych wyjątków",
+		"description": "Nie rób catch Exception",
+		"tags": ["Wyjątki"]
+	},
+	{
+		"title": "Rozważ łapanie wyjątku i rzucenie ponownie z dodaniem kontekstu",
+		"description": null,
+		"tags": ["Wyjątki"]
+	},
+	{
+		"title": "Zbuduj odpowiedź odnośnie błędu w Rest Api",
+		"description": "Uwzględnij id wywołania, status, kod błędu, szczegółową informację pomijając szczegóły implementacji",
+		"tags": ["Rest", "Wyjątki"]
+	},
+	{
+		"title": "Zmienne - jak najmniejszy scope",
+		"description": "Deklaruj zmienne jak najbliżej miejsca użycia i postaraj się, żeby znikły jak najszybciej",
+		"tags": ["Zmienne"]
+	},
+	{
+		"title": "Stałe wartości deklaruj jako final",
+		"description": null,
+		"tags": ["Zmienne"]
+	},
+	{
+		"title": "Wyliczeniowe wartości deklaruj jako enumy",
+		"description": null,
+		"tags": ["Zmienne"]
+	},
+	{
+		"title": "Nie używaj magicznych wartości",
+		"description": "Np. -1 oznacza brak limitu, a jeśli już zdefiniuj jako stałą",
+		"tags": ["Zmienne"]
+	},
+	{
+		"title": "Metoda - jak najmniej argumentów",
+		"description": "Max 2 ew. 3",
+		"tags": ["Metoda", "Sygnatura"]
+	},
+	{
+		"title": "Metoda - nie używaj argumentów znacznikowych",
+		"description": "np. boolean albo enum (również String, int jeśli działają jako enum)",
+		"tags": ["Metoda", "Sygnatura"]
+	},
+	{
+		"title": "Metoda - nie zwracaj i nie akceptuj nulli",
+		"description": "W przeciwnym razie udokumentuj to",
+		"tags": ["Metoda", "Sygnatura", "Komentarz", "Null"]
+	},
+	{
+		"title": "Hermatyzacja warunków granicznych",
+		"description": null,
+		"tags": ["Metoda"]
+	},
+	{
+		"title": "Metoda nie dłuższa niż 20 wierszy",
+		"description": null,
+		"tags": ["Metoda"]
+	},
+	{
+		"title": "Metoda - trudno wydzielić z tej metody mniejsze",
+		"description": null,
+		"tags": ["Metoda"]
+	},
+	{
+		"title": "Metoda - operacje na jednym poziomie abstrakcji",
+		"description": null,
+		"tags": ["Metoda"]
+	},
+	{
+		"title": "Metoda - nie więcej niż 2 wcięcia",
+		"description": null,
+		"tags": ["Metoda"]
+	},
+	{
+		"title": "Metoda - brak ukrytych efektów",
+		"description": "W przeciwnym razie uwzględnij efekt w nazwie",
+		"tags": ["Metoda"]
+	},
+	{
+		"title": "Opisz przypadki graniczne dla argumentów",
+		"description": null,
+		"tags": ["Metoda", "Dokumentacja"]
+	},
+	{
+		"title": "Opisz wymagania co do argumentów",
+		"description": "Jeśli są i są nietypowe",
+		"tags": ["Metoda", "Dokumentacja"]
+	},
+	{
+		"title": "Używaj assercji",
+		"description": "Podczas dewelopmentu i debugingu do walidacji założeń",
+		"tags": ["Null"]
+	},
+	{
+		"title": "Nie waliduj nulli",
+		"description": "Jeśli null nie powinien wystąpić nie waliduj go, pozwól na NullPointer",
+		"tags": ["Null"]
+	},
+	{
+		"title": "Niskopoziomowe struktury danych obuduj abstrakcją",
+		"description": null,
+		"tags": ["Struktura danych"]
+	},
+	{
+		"title": "Grupuj kilka zmiennych powiązanych w klasy",
+		"description": null,
+		"tags": ["Struktura danych"]
+	},
+	{
+		"title": "Używaj odpowiednich struktur danych",
+		"description": "Zastanów się czy używasz przemyślanych struktur a nie pierwszych lepszych",
+		"tags": ["Struktura danych"]
+	},
+	{
+		"title": "Odpalanie testów jest jedną prostą metodą",
+		"description": null,
+		"tags": ["Środowisko"]
+	},
+	{
+		"title": "Budowanie jest jedną prostą metodą",
+		"description": null,
+		"tags": ["Środowisko"]
+	},
+	{
+		"title": "Przeanalizuj poprawność pod kątem warunków granicznych",
+		"description": null,
+		"tags": ["Poprawność"]
+	},
+	{
+		"title": "Każda warstwa (metoda, klasa, pakiet) ma jedną odpowiedzialność",
+		"description": null,
+		"tags": ["Design"]
+	},
+	{
+		"title": "Łatwo rozszerzyć funkcjonalność o nowe wymagania",
+		"description": null,
+		"tags": ["Design"]
+	},
+	{
+		"title": "Nie duplikuj kodu - wydziel abstrakcję",
+		"description": null,
+		"tags": ["Abstrakcja"]
+	},
+	{
+		"title": "Jeśli kod może być reużyty wydziel go do metody",
+		"description": null,
+		"tags": ["Abstrakcja"]
+	},
+	{
+		"title": "Udostępniaj abstrakcję a nie szczegóły implementacji",
+		"description": null,
+		"tags": ["Abstrakcja"]
+	},
+	{
+		"title": "Importy z gwiazdką, jeśli jest kilka z pakietu",
+		"description": null,
+		"tags": ["Klasa"]
+	},
+	{
+		"title": "Odpowiednia kolejność elementów",
+		"description": "Stałe publiczne, stałe prywatne, zmienne prywatne, metody publiczne, metody prywatne w kolejności wywoływania (depth first)",
+		"tags": ["Klasa"]
+	},
+	{
+		"title": "Małe klasy",
+		"description": "Nie więcej niż 200, ew. 500 linii logiki",
+		"tags": ["Klasa"]
+	},
+	{
+		"title": "Klasa ma jedną odpowiedzialność",
+		"description": "Metody powiązane z klasą brzmią rozsądnie, klasa nie jest workiem na metody",
+		"tags": ["Klasa"]
+	},
+	{
+		"title": "Unikaj indeksów w pętlach",
+		"description": null,
+		"tags": ["Czytalność"]
+	},
+	{
+		"title": "if/else/else switch/case zastąp polimorfizmem",
+		"description": null,
+		"tags": ["Czytelność"]
+	},
+	{
+		"title": "Warunki wyodrębnij jako funkcję, zmienną lub predykat",
+		"description": null,
+		"tags": ["Czytelność"]
+	},
+	{
+		"title": "Brak nieużwanego/zakomentowanego kodu",
+		"description": null,
+		"tags": ["Czytelność"]
+	},
+	{
+		"title": "Umieść konfigurację poza kodem",
+		"description": null,
+		"tags": ["Środowisko"]
+	}
+]
