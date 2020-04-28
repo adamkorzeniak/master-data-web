@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { DietModule } from './diet/diet.module';
 import { FlashcardComponent } from './flashcard/flashcard.component';
 import { FlashcardModule } from './flashcard/flashcard.module';
+import { ChecklistComponent } from './checklist/checklist.component';
+import { ChecklistModule } from './checklist/checklist.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { FlashcardModule } from './flashcard/flashcard.module';
     MovieModule,
     DietModule,
     FlashcardModule,
+    ChecklistModule,
     CryptoModule,
     AuthModule,
     ErrorModule,

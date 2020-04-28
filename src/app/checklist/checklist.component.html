@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row font-weight-bold">
+    <div class="col-5 col-sm-5">Title</div>
+    <div class="col-7 col-sm-7">Description</div>
+  </div>
+  <div class="row" *ngFor="let item of checklist">
+    <div class="col-5 col-sm-5">{{ item.title }}</div>
+    <div class="col-7 col-sm-7">{{ item.description }}</div>
+  </div>
+</div>
