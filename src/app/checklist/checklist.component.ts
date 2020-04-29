@@ -19,6 +19,9 @@ export class ChecklistComponent implements OnInit {
   }
 
   private initializeChecklist(checklist: IChecklistItem[]) {
+    for (var i = 0; i < checklist.length; i++) {
+      checklist[i].checked = false;
+    }
     this.checklist = checklist;
   }
 

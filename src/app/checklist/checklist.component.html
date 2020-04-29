@@ -1,10 +1,14 @@
 <div class="container-fluid">
   <div class="row font-weight-bold">
+    <div class="col-1 col-sm-1"></div>
     <div class="col-5 col-sm-5">Title</div>
-    <div class="col-7 col-sm-7">Description</div>
+    <div class="col-6 col-sm-6">Description</div>
   </div>
   <div class="row" *ngFor="let item of checklist">
-    <div class="col-5 col-sm-5">{{ item.title }}</div>
-    <div class="col-7 col-sm-7">{{ item.description }}</div>
+    <div class="col-1 col-sm-1">
+      <input type="checkbox" [checked]="item.checked" (change)="item.checked = !item.checked"/>
+    </div>
+    <div class="col-5 col-sm-5" [ngClass]="{'crossed-out': item.checked}">{{ item.title }}</div>
+    <div class="col-6 col-sm-6" [ngClass]="{'crossed-out': item.checked}">{{ item.description }}</div>
   </div>
 </div>
