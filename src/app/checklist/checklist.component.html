@@ -1,14 +1,15 @@
 <div class="container-fluid">
-  <div class="row font-weight-bold">
-    <div class="col-1 col-sm-1"></div>
-    <div class="col-5 col-sm-5">Title</div>
-    <div class="col-6 col-sm-6">Description</div>
-  </div>
-  <div class="row" *ngFor="let item of checklist">
-    <div class="col-1 col-sm-1">
-      <input type="checkbox" [checked]="item.checked" (change)="item.checked = !item.checked"/>
+  <button (click)="initialize()">Start new</button>
+  <div class="card m-2" *ngFor="let group of checklist">
+    <div class="card-header">{{ group.group }}</div>
+    <div class="card-body">
+      <div class="card-text row m-2" *ngFor="let item of group.items">
+        <div class="col-1">
+          <input type="checkbox" [checked]="item.checked" (change)="item.checked = !item.checked" class="p-6" />
+        </div>
+        <div class="col-5" [ngClass]="{'crossed-out': item.checked}">{{ item.title }}</div>
+        <div class="col-6" [ngClass]="{'crossed-out': item.checked}">{{ item.description }}</div>
+      </div>
     </div>
-    <div class="col-5 col-sm-5" [ngClass]="{'crossed-out': item.checked}">{{ item.title }}</div>
-    <div class="col-6 col-sm-6" [ngClass]="{'crossed-out': item.checked}">{{ item.description }}</div>
   </div>
 </div>

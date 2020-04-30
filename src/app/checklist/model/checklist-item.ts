@@ -3,3 +3,8 @@ export interface IChecklistItem {
   description: string;
   checked: boolean;
 }
+
+export interface IChecklistGroup {
+  group: string;
+  items: IChecklistItem[];
+}
